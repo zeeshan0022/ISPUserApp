@@ -1,0 +1,52 @@
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <!-- Base application theme. -->
+    <style name="Theme.ComplaintProtalUser" parent="Theme.MaterialComponents.DayNight.NoActionBar">
+        <!-- Primary brand color. -->
+        <item name="colorPrimary">@color/primary</item>
+        <item name="colorPrimaryVariant">@color/primary</item>
+        <item name="colorOnPrimary">@color/txtColor</item>
+        <!-- Secondary brand color. -->
+        <item name="colorSecondary">@color/colorSec</item>
+        <item name="colorSecondaryVariant">@color/cardBack</item>
+        <item name="colorOnSecondary">@color/grey</item>
+
+        <!-- Status bar color. -->
+        <item name="android:statusBarColor" tools:targetApi="l">?attr/colorPrimaryVariant</item>
+
+
+        <item name="backgroundColor">@color/back</item>
+        <item name="android:textColor">@color/black</item>
+
+        <item name="android:windowSoftInputMode">stateAlwaysHidden|adjustPan</item>
+
+        <!-- Customize your theme here. -->
+    </style>
+
+    <style name="buttonStyle" parent="Widget.MaterialComponents.Button">
+        <item name="cornerFamily">cut</item>
+        <item name="cornerSizeTopLeft">15dp</item>
+    </style>
+
+    <style name="leftSideChat" parent="Widget.MaterialComponents.CardView">
+        <item name="cornerSizeTopRight">10dp</item>
+        <item name="cornerSizeBottomRight">10dp</item>
+        <item name="cornerSizeTopLeft">10dp</item>
+        <item name="cornerSizeBottomLeft">0dp</item>
+    </style>
+
+    <style name="rightSideChat" parent="Widget.MaterialComponents.CardView">
+        <item name="cornerSizeTopRight">0dp</item>
+        <item name="cornerSizeBottomRight">10dp</item>
+        <item name="cornerSizeTopLeft">10dp</item>
+        <item name="cornerSizeBottomLeft">10dp</item>
+    </style>
+    <style name="MineCustomTabText" parent="TextAppearance.Design.Tab">
+        <item name="android:textSize">12sp</item>
+        <item name="textAllCaps">false</item>
+    </style>
+
+    <style name="customErrorText" parent="Widget.MaterialComponents.TextView">
+        <item name="android:textSize">12sp</item>
+        <item name="textAllCaps">false</item>
+    </style>
+</resources>

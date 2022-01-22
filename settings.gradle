@@ -1,0 +1,13 @@
+dependencyResolutionManagement {
+    repositoriesMode.set(RepositoriesMode.FAIL_ON_PROJECT_REPOS)
+    repositories {
+        google()
+        maven { url "https://jitpack.io" }
+        mavenCentral()
+            maven { url 'https://oss.sonatype.org/content/repositories/ksoap2-android-releases/' }
+
+        // Warning: this repository is going to shut down soon
+    }
+}
+rootProject.name = "Complaint Protal User"
+include ':app',':libs'

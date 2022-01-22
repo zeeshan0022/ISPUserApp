@@ -1,0 +1,44 @@
+package com.joinhub.complaintprotaluser.activities
+
+import android.os.Bundle
+import com.google.android.material.bottomnavigation.BottomNavigationView
+import androidx.appcompat.app.AppCompatActivity
+import androidx.navigation.findNavController
+import androidx.navigation.ui.AppBarConfiguration
+import androidx.navigation.ui.setupActionBarWithNavController
+import androidx.navigation.ui.setupWithNavController
+import com.joinhub.complaintprotaluser.MainActivity
+import com.joinhub.complaintprotaluser.R
+
+import com.joinhub.complaintprotaluser.databinding.ActivityDashBoardBinding
+import com.joinhub.complaintprotaluser.utilties.Constants
+
+class DashBoardActivity : AppCompatActivity() {
+
+    private lateinit var binding: ActivityDashBoardBinding
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+
+        binding = ActivityDashBoardBinding.inflate(layoutInflater)
+        setContentView(binding.root)
+        init()
+        val navView: BottomNavigationView = binding.navView
+
+        val navController = findNavController(R.id.nav_host_fragment_activity_dash_board)
+        AppBarConfiguration(
+            setOf(
+                R.id.navigation_home, R.id.navigation_dashboard, R.id.navigation_packages,R.id.navigation_billing,R.id.navigation_profile
+            )
+        )
+
+        navView.setupWithNavController(navController)
+    }
+    private fun init(){
+        if(MainActivity.themeBool){
+            Constants.darkThemeStyle(this)
+        }else{
+            Constants.lightThemeStyle(this)
+        }
+    }
+}

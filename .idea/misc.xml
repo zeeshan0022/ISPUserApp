@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="DesignSurface">
+    <option name="filePathToZoomLevelMap">
+      <map>
+        <entry key="..\:/Final Year Projects/ComplaintProtalUser/app/src/main/res/drawable/switch_off.xml" value="0.2078125" />
+        <entry key="..\:/Final Year Projects/ComplaintProtalUser/app/src/main/res/drawable/switch_on.xml" value="0.2078125" />
+        <entry key="..\:/Final Year Projects/ComplaintProtalUser/app/src/main/res/drawable/switch_thumb.xml" value="0.2078125" />
+        <entry key="..\:/Final Year Projects/ComplaintProtalUser/app/src/main/res/drawable/track_swtch.xml" value="0.2078125" />
+        <entry key="..\:/Final Year Projects/ComplaintProtalUser/app/src/main/res/font/font.xml" value="0.221875" />
+        <entry key="..\:/Final Year Projects/ComplaintProtalUser/app/src/main/res/layout/activity_dash_board.xml" value="0.33" />
+        <entry key="..\:/Final Year Projects/ComplaintProtalUser/app/src/main/res/layout/activity_forgot.xml" value="0.19166666666666668" />
+        <entry key="..\:/Final Year Projects/ComplaintProtalUser/app/src/main/res/layout/activity_main.xml" value="0.22" />
+        <entry key="..\:/Final Year Projects/ComplaintProtalUser/app/src/main/res/layout/activity_settings.xml" value="0.22" />
+        <entry key="..\:/Final Year Projects/ComplaintProtalUser/app/src/main/res/layout/activity_signin.xml" value="0.18" />
+        <entry key="..\:/Final Year Projects/ComplaintProtalUser/app/src/main/res/layout/fragment_add_complatint.xml" value="0.25" />
+        <entry key="..\:/Final Year Projects/ComplaintProtalUser/app/src/main/res/layout/fragment_all_packages.xml" value="0.22" />
+        <entry key="..\:/Final Year Projects/ComplaintProtalUser/app/src/main/res/layout/fragment_billing_history.xml" value="0.25" />
+        <entry key="..\:/Final Year Projects/ComplaintProtalUser/app/src/main/res/layout/fragment_billing_home.xml" value="0.22" />
+        <entry key="..\:/Final Year Projects/ComplaintProtalUser/app/src/main/res/layout/fragment_billings.xml" value="0.19166666666666668" />
+        <entry key="..\:/Final Year Projects/ComplaintProtalUser/app/src/main/res/layout/fragment_complaint.xml" value="0.22" />
+        <entry key="..\:/Final Year Projects/ComplaintProtalUser/app/src/main/res/layout/fragment_complaint_feedback.xml" value="0.19166666666666668" />
+        <entry key="..\:/Final Year Projects/ComplaintProtalUser/app/src/main/res/layout/fragment_complaint_history.xml" value="0.25" />
+        <entry key="..\:/Final Year Projects/ComplaintProtalUser/app/src/main/res/layout/fragment_home.xml" value="0.25" />
+        <entry key="..\:/Final Year Projects/ComplaintProtalUser/app/src/main/res/layout/fragment_live_chat.xml" value="0.19166666666666668" />
+        <entry key="..\:/Final Year Projects/ComplaintProtalUser/app/src/main/res/layout/fragment_packages.xml" value="0.19166666666666668" />
+        <entry key="..\:/Final Year Projects/ComplaintProtalUser/app/src/main/res/layout/fragment_profile.xml" value="0.25" />
+        <entry key="..\:/Final Year Projects/ComplaintProtalUser/app/src/main/res/layout/fragment_unlimited_package.xml" value="0.22" />
+        <entry key="..\:/Final Year Projects/ComplaintProtalUser/app/src/main/res/layout/list_complaint_history_items.xml" value="0.25" />
+        <entry key="..\:/Final Year Projects/ComplaintProtalUser/app/src/main/res/menu/bottom_nav_menu.xml" value="0.19166666666666668" />
+        <entry key="..\:/Final Year Projects/ComplaintProtalUser/app/src/main/res/xml/network.xml" value="0.1" />
+      </map>
+    </option>
+  </component>
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_11" project-jdk-name="1.8" project-jdk-type="JavaSDK">
+    <output url="file://$PROJECT_DIR$/build/classes" />
+  </component>
+  <component name="ProjectType">
+    <option name="id" value="Android" />
+  </component>
+</project>

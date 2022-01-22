@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    app:cardBackgroundColor="?attr/backgroundColor"
+    android:elevation="5dp"
+    app:cardElevation="5dp"
+    android:layout_marginStart="20dp"
+    android:layout_marginTop="5dp"
+    android:layout_marginBottom="10dp"
+    app:cardCornerRadius="5dp"
+    android:layout_marginEnd="20dp"
+    android:layout_height="110dp">
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <View
+            android:layout_width="30dp"
+            android:id="@+id/view"
+            android:background="?attr/colorSecondary"
+            android:layout_height="wrap_content"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_toEndOf="@id/view"
+            android:id="@+id/itemTicketNo"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="10dp"
+            android:fontFamily="@font/montserratsemibold"
+            android:textSize="16sp"
+            android:layout_height="wrap_content"
+            android:textColor="?attr/colorOnPrimary"
+            android:text="Ticket No: tk:12009"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="?attr/colorOnPrimary"
+            android:layout_toEndOf="@id/view"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="5dp"
+            android:textSize="14sp"
+            android:id="@+id/itemIssueType"
+            android:layout_below="@id/itemTicketNo"
+            android:text="Issue Type: Modem Problem"/>
+
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="?attr/colorOnPrimary"
+            android:layout_toEndOf="@id/view"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="5dp"
+            android:textSize="14sp"
+            android:id="@+id/itemAreaCode"
+            android:layout_below="@id/itemIssueType"
+            android:text="Area Code: rwp01"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="?attr/colorOnPrimary"
+            android:layout_toEndOf="@id/view"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="5dp"
+            android:textSize="14sp"
+            android:id="@+id/itemSRName"
+            android:layout_below="@id/itemAreaCode"
+            android:text="Under Service: Zeeshan Nawaz"/>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/statusLay"
+            android:orientation="vertical"
+            android:gravity="center"
+            android:layout_centerVertical="true"
+            android:layout_alignParentEnd="true"
+            android:layout_marginEnd="30dp">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Status"
+                android:textColor="?attr/colorOnPrimary"
+                />
+            <ImageView
+                android:layout_width="20dp"
+                android:id="@+id/itemStatusIcon"
+                android:layout_height="20dp"
+                android:padding="3dp"
+                android:src="@drawable/activeicon"/>
+        </LinearLayout>
+    </RelativeLayout>
+
+
+</com.google.android.material.card.MaterialCardView>

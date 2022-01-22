@@ -1,0 +1,28 @@
+<resources>
+    <string name="app_name">Complaint Protal User</string>
+    <string name="welcome">Welcome,</string>
+    <string name="title_activity_dash_board">DashBoardActivity</string>
+    <string name="title_home">Home</string>
+    <string name="title_dashboard">Dashboard</string>
+    <string name="title_notifications">Notifications</string>
+    <string name="basic_details">Basic Details</string>
+    <string name="complaint">Complaint</string>
+    <string name="billing">Billing</string>
+    <string name="packages">Packages</string>
+    <string name="package_details">Package Details</string>
+    <string name="pay_bill_now">Pay Bill Now</string>
+    <string name="latest_rated_packages">Latest Rated Packages</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="complaint_managger">Complaint Manager</string>
+    <string name="name">Name <font color='#FF0000'>*</font></string>
+    <string name="phone_number">Phone Number *</string>
+    <string name="address">Address*</string>
+    <string name="select_location">Select Location</string>
+    <string name="send_complaint">Send Complaint</string>
+    <string name="enter_description">Enter Description</string>
+    <string name="unlimited_volume_bundle">Unlimited Volume Bundle</string>
+    <string name="speed">Speed</string>
+    <string name="_10mpbs">10Mpbs</string>
+    <string name="current_bill">Current Bill</string>
+</resources>
