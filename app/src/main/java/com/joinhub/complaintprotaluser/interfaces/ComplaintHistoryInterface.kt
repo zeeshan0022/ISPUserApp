@@ -1,9 +1,10 @@
 package com.joinhub.complaintprotaluser.interfaces
 
+import com.joinhub.complaintprotaluser.models.ComplaintModel
+
 interface ComplaintHistoryInterface {
 
-    fun onStart()
-    fun onFetch()
-    fun onError()
-    fun onSuccess()
+    fun onStarts()
+    fun onError(e:String)
+    fun onSuccess(list:List<ComplaintModel>)
 }

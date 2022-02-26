@@ -7,16 +7,28 @@ import android.os.Build
 import android.view.View
 import android.view.Window
 import androidx.core.view.WindowInsetsControllerCompat
+import com.google.android.gms.common.ConnectionResult
+import com.google.android.gms.common.GoogleApiAvailability
 import com.joinhub.complaintprotaluser.R
+
 
 class Constants {
 
     companion object {
         const val WSDL_TARGET_NAMESPACE = "http://tempuri.org/"
 
-        const val SOAP_ADDRESS = "https://joinhubcode.azurewebsites.net/WebService1.asmx"
+        const val SOAP_ADDRESS = "http://192.168.0.100:2020/WebService1.asmx"
 
 
+        fun checkGoogleAPI(activity: Activity): Boolean{
+            val googleApiAvailability = GoogleApiAvailability.getInstance()
+            val status = googleApiAvailability.isGooglePlayServicesAvailable(activity)
+            if (status != ConnectionResult.SUCCESS) {
+
+                return false
+            }
+            return true
+        }
         fun darkThemeStyle(activity: Activity) {
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
                 val window: Window = activity.window

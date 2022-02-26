@@ -129,15 +129,16 @@
             android:elevation="5dp"
             android:hint="@string/select_location"
             app:errorEnabled="true"
-
             android:textColorHint="?attr/colorOnSecondary"
             android:layout_marginStart="20dp"
             android:layout_marginTop="5dp"
             android:layout_marginEnd="20dp"
             app:boxStrokeColor="?attr/colorSecondary"
-            app:endIconMode="clear_text"
+            app:endIconMode="custom"
+            app:endIconDrawable="@drawable/ic_location"
             app:hintAnimationEnabled="true"
             app:hintEnabled="true"
+            app:endIconTint="?attr/colorOnSecondary"
             app:hintTextColor="?attr/colorOnSecondary"
             app:layout_constraintTop_toBottomOf="@+id/addressLayout">
 
@@ -145,6 +146,7 @@
                 android:id="@+id/locationEditText"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:enabled="false"
                 android:fontFamily="@font/montserratregular"
                 android:inputType="text"
                 android:textColor="?attr/colorOnPrimary" />
@@ -169,12 +171,14 @@
                 <RadioButton
                     android:layout_width="wrap_content"
                     android:layout_weight="0.4"
+                    android:id="@+id/radioModem"
                     android:text="Modem Problem"
                     android:layout_height="wrap_content" />
 
                 <RadioButton
                     android:layout_weight="1"
                     android:text="Gaming lags"
+                    android:id="@+id/radioGaming"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content" />
 
@@ -185,11 +189,13 @@
                 android:layout_height="match_parent">
                 <RadioButton
                     android:text="Slow Browsing"
+                    android:id="@+id/radioSlowBro"
                     android:layout_weight="1"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content" />
 
                 <RadioButton
+                    android:id="@+id/radioFre"
                     android:text="Frequent Disconnection"
                     android:layout_weight="1"
                     android:layout_gravity="end"
@@ -206,7 +212,7 @@
             android:layout_height="wrap_content"
             android:background="@android:color/transparent"
             android:elevation="5dp"
-            android:hint="@string/select_location"
+            android:hint="Description"
             app:errorEnabled="true"
 
             android:textColorHint="?attr/colorOnSecondary"

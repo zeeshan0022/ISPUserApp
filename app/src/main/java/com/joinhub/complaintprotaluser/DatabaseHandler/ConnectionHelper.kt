@@ -1,5 +1,6 @@
 package com.joinhub.complaintprotaluser.DatabaseHandler
 
+import android.annotation.SuppressLint
 import android.os.StrictMode
 import android.util.Log
 import java.sql.Connection
@@ -13,10 +14,11 @@ class ConnectionHelper {
     lateinit var password:String
     lateinit var port:String
 
+    @SuppressLint("NewApi")
     fun connectionIni():Connection{
-        host= "192.168.0.106"
+        host= "192.168.0.103"
         port="1433"
-        dbName="ISPDatabaseFYP"
+        dbName="ISPDatabase"
         userName="zeeshu11"
         password="zeeshu11"
 

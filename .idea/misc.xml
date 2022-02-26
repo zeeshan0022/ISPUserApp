@@ -8,6 +8,8 @@
         <entry key="..\:/Final Year Projects/ComplaintProtalUser/app/src/main/res/drawable/switch_thumb.xml" value="0.2078125" />
         <entry key="..\:/Final Year Projects/ComplaintProtalUser/app/src/main/res/drawable/track_swtch.xml" value="0.2078125" />
         <entry key="..\:/Final Year Projects/ComplaintProtalUser/app/src/main/res/font/font.xml" value="0.221875" />
+        <entry key="..\:/Final Year Projects/ComplaintProtalUser/app/src/main/res/layout/activity_complaint_detail.xml" value="0.25" />
+        <entry key="..\:/Final Year Projects/ComplaintProtalUser/app/src/main/res/layout/activity_complaint_detail_actvity.xml" value="0.19166666666666668" />
         <entry key="..\:/Final Year Projects/ComplaintProtalUser/app/src/main/res/layout/activity_dash_board.xml" value="0.33" />
         <entry key="..\:/Final Year Projects/ComplaintProtalUser/app/src/main/res/layout/activity_forgot.xml" value="0.19166666666666668" />
         <entry key="..\:/Final Year Projects/ComplaintProtalUser/app/src/main/res/layout/activity_main.xml" value="0.22" />
@@ -27,6 +29,7 @@
         <entry key="..\:/Final Year Projects/ComplaintProtalUser/app/src/main/res/layout/fragment_profile.xml" value="0.25" />
         <entry key="..\:/Final Year Projects/ComplaintProtalUser/app/src/main/res/layout/fragment_unlimited_package.xml" value="0.22" />
         <entry key="..\:/Final Year Projects/ComplaintProtalUser/app/src/main/res/layout/list_complaint_history_items.xml" value="0.25" />
+        <entry key="..\:/Final Year Projects/ComplaintProtalUser/app/src/main/res/layout/list_item_complaint_history.xml" value="0.19166666666666668" />
         <entry key="..\:/Final Year Projects/ComplaintProtalUser/app/src/main/res/menu/bottom_nav_menu.xml" value="0.19166666666666668" />
         <entry key="..\:/Final Year Projects/ComplaintProtalUser/app/src/main/res/xml/network.xml" value="0.1" />
       </map>

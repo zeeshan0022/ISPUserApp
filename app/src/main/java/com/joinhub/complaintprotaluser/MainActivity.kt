@@ -30,7 +30,7 @@ class MainActivity : AppCompatActivity() {
         setContentView(binding.root)
         init()
         val preference= Preference(baseContext)
-        if(preference.isBooleenPreference("userID")){
+        if(preference.getStringpreference("userName",null)!=null){
             Handler(Looper.getMainLooper()).postDelayed({
                 startActivity(Intent(baseContext,DashBoardActivity::class.java))
                 finish()
@@ -51,17 +51,19 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun checkTheme(){
-        viewTheme.readFromDataStore.observe(this, {
 
-            if(it.equals("1")){
-             themeBool=false
+        viewTheme.readFromDataStore.observe(this) {
+            if (it.equals("1")) {
+                themeBool = false
                 AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
-               lightThemeStyle(this)
-            }else{
+                lightThemeStyle(this)
+            } else {
                 AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)
                 darkThemeStyle(this)
-                themeBool=true
+                themeBool = true
             }
-        })
+        }
+
+
     }
 }

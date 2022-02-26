@@ -75,8 +75,7 @@ class SigninActivity : AppCompatActivity(), LoginInterface {
             showToast("Login Successful")
             // Work in the UI thread
         val preference=Preference(baseContext)
-        preference.setBooleanpreference("userID",true)
-        preference.setStringpreference("userIDS", binding.userIDeditText.text.toString())
+       preference.setStringpreference("userName", binding.userIDeditText.text.toString())
         startActivity(Intent(baseContext,DashBoardActivity::class.java))
         finish()
     }
