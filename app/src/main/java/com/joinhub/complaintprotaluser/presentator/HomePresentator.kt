@@ -1,9 +1,13 @@
 package com.joinhub.complaintprotaluser.presentator
 
 import android.app.Activity
+import com.joinhub.complaintprotaluser.WebApis.LoadArea
+import com.joinhub.complaintprotaluser.WebApis.LoadPackageDetail
 import com.joinhub.complaintprotaluser.WebApis.LoadSRDetail
 import com.joinhub.complaintprotaluser.WebApis.LoadUserData
 import com.joinhub.complaintprotaluser.interfaces.HomeInterface
+import com.joinhub.complaintprotaluser.models.AreaModel
+import com.joinhub.complaintprotaluser.models.PackageDetails
 import com.joinhub.complaintprotaluser.models.ServiceModel
 import com.joinhub.complaintprotaluser.models.UserModel
 import org.ksoap2.serialization.SoapPrimitive
@@ -79,5 +83,52 @@ class HomePresentator(
         }.start()
     }
 
+    fun loadArea(areaID: Int){
+        val api= LoadArea()
+        Thread{
+            val obj= api.loadData(areaID)
+            activity.runOnUiThread {
+                if(obj.getProperty("areaCode")!=null){
+               val model= AreaModel(
+                   Integer.parseInt(obj.getProperty("areaID").toString()),
+                   obj.getPropertyAsString("areaCode"),
+                   obj.getPropertyAsString("city"),
+                   obj.getPropertyAsString("areaName"),
+                   obj.getPropertyAsString("areaSubName")
+               )
+                    if(model.city!=null){
+                        loginInterface.onAreaLoad(model)
+                    }else{
+                        loginInterface.onError(obj.toString())
+                    }
+                }
+            }
+        }.start()
+    }
 
+    fun loadPackage(id:Int){
+        val api= LoadPackageDetail()
+        Thread{
+            val obj= api.loadData(id)
+            activity.runOnUiThread {
+                if(obj.getProperty("pkgName")!=null){
+                    val model= PackageDetails(
+                        Integer.parseInt(obj.getProperty("pkgID").toString()),
+                        obj.getPropertyAsString("pkgName"),
+                        obj.getPropertyAsString("pkgDesc"),
+                        obj.getPropertyAsString("pkgSpeed"),
+                        obj.getPropertyAsString("pkgVolume"),
+                        obj.getPropertyAsString("pkgRate").toDouble(),
+                        obj.getPropertyAsString("pkgBouns_Speed"),
+                        obj.getProperty("pkgBanner").toString().toByteArray()
+                    )
+                    if(model.pkgName!=null){
+                        loginInterface.onPackageLoad(model)
+                    }else{
+                        loginInterface.onError(obj.toString())
+                    }
+                }
+            }
+        }.start()
+    }
 }

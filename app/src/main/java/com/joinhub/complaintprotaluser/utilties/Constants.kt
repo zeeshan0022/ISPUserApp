@@ -17,7 +17,7 @@ class Constants {
     companion object {
         const val WSDL_TARGET_NAMESPACE = "http://tempuri.org/"
 
-        const val SOAP_ADDRESS = "http://192.168.0.100:2020/WebService1.asmx"
+        const val SOAP_ADDRESS = "http://192.168.0.102:2020/WebService1.asmx"
 
 
         fun checkGoogleAPI(activity: Activity): Boolean{

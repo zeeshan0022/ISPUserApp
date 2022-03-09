@@ -20,6 +20,9 @@
         android:theme="@style/Theme.ComplaintProtalUser"
         android:usesCleartextTraffic="true">
         <activity
+            android:name=".activities.PackageDetailsActivity"
+            android:exported="false" />
+        <activity
             android:name=".activities.ForgotActivity"
             android:exported="false" />
         <activity

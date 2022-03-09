@@ -3,6 +3,9 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Final Year Projects/ComplaintProtalUser/app/src/main/res/drawable/ic_complaint.xml" value="0.1305" />
+        <entry key="..\:/Final Year Projects/ComplaintProtalUser/app/src/main/res/drawable/ic_complaint_history.xml" value="0.1305" />
+        <entry key="..\:/Final Year Projects/ComplaintProtalUser/app/src/main/res/drawable/ic_customer_service.xml" value="0.1305" />
         <entry key="..\:/Final Year Projects/ComplaintProtalUser/app/src/main/res/drawable/switch_off.xml" value="0.2078125" />
         <entry key="..\:/Final Year Projects/ComplaintProtalUser/app/src/main/res/drawable/switch_on.xml" value="0.2078125" />
         <entry key="..\:/Final Year Projects/ComplaintProtalUser/app/src/main/res/drawable/switch_thumb.xml" value="0.2078125" />
@@ -13,6 +16,7 @@
         <entry key="..\:/Final Year Projects/ComplaintProtalUser/app/src/main/res/layout/activity_dash_board.xml" value="0.33" />
         <entry key="..\:/Final Year Projects/ComplaintProtalUser/app/src/main/res/layout/activity_forgot.xml" value="0.19166666666666668" />
         <entry key="..\:/Final Year Projects/ComplaintProtalUser/app/src/main/res/layout/activity_main.xml" value="0.22" />
+        <entry key="..\:/Final Year Projects/ComplaintProtalUser/app/src/main/res/layout/activity_package_details.xml" value="0.33" />
         <entry key="..\:/Final Year Projects/ComplaintProtalUser/app/src/main/res/layout/activity_settings.xml" value="0.22" />
         <entry key="..\:/Final Year Projects/ComplaintProtalUser/app/src/main/res/layout/activity_signin.xml" value="0.18" />
         <entry key="..\:/Final Year Projects/ComplaintProtalUser/app/src/main/res/layout/fragment_add_complatint.xml" value="0.25" />
@@ -28,6 +32,7 @@
         <entry key="..\:/Final Year Projects/ComplaintProtalUser/app/src/main/res/layout/fragment_packages.xml" value="0.19166666666666668" />
         <entry key="..\:/Final Year Projects/ComplaintProtalUser/app/src/main/res/layout/fragment_profile.xml" value="0.25" />
         <entry key="..\:/Final Year Projects/ComplaintProtalUser/app/src/main/res/layout/fragment_unlimited_package.xml" value="0.22" />
+        <entry key="..\:/Final Year Projects/ComplaintProtalUser/app/src/main/res/layout/item_package_list.xml" value="0.25" />
         <entry key="..\:/Final Year Projects/ComplaintProtalUser/app/src/main/res/layout/list_complaint_history_items.xml" value="0.25" />
         <entry key="..\:/Final Year Projects/ComplaintProtalUser/app/src/main/res/layout/list_item_complaint_history.xml" value="0.19166666666666668" />
         <entry key="..\:/Final Year Projects/ComplaintProtalUser/app/src/main/res/menu/bottom_nav_menu.xml" value="0.19166666666666668" />

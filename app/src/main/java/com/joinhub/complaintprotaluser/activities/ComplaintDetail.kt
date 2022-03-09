@@ -28,18 +28,26 @@ class ComplaintDetail: AppCompatActivity() ,ComplaintDetailInterface {
         setContentView(binding.root)
         ini()
         bundle= intent.extras!!
-        if(!bundle.isEmpty){
-            pos= bundle.getInt("pos")
-            binding.txtName.text= "Name: "+ ComplaintHistory.complaintList[pos].complaintName
-            binding.txtPhone.text="Phone: " +ComplaintHistory.complaintList[pos].complaintPhone
-            binding.txtEmail.text="Email: "+ preference.getStringpreference("userAddress",null)
-            binding.txtAddress.text="Address: "+ComplaintHistory.complaintList[pos].complaintEmail
-            binding.txtSName.text= "Name: " +preference.getStringpreference("serviceName",null)
-            binding.txtSPhone.text= "Phone: "+preference.getStringpreference("servicePhone",null)
-            binding.txtSEmail.text= "Email: "+preference.getStringpreference("serviceEmail",null)
-            binding.txtIssue.text= "Issue Type: "+ ComplaintHistory.complaintList[pos].complaintIssue
-            binding.txtDesc.text= "Description: \n            "+ ComplaintHistory.complaintList[pos].complaintDesc
+        if(!bundle.isEmpty) {
+            pos = bundle.getInt("pos")
+            binding.txtName.text = "Name: " + ComplaintHistory.complaintList[pos].complaintName
+            binding.txtPhone.text = "Phone: " + ComplaintHistory.complaintList[pos].complaintPhone
+            binding.txtEmail.text = "Email: " + ComplaintHistory.complaintList[pos].complaintEmail
+            binding.txtAddress.text =
+                "Address: " + ComplaintHistory.complaintList[pos].complaintEmail
+            binding.txtSName.text = "Name: " + preference.getStringpreference("serviceName", null)
+            binding.txtSPhone.text =
+                "Phone: " + preference.getStringpreference("servicePhone", null)
+            binding.txtSEmail.text =
+                "Email: " + preference.getStringpreference("serviceEmail", null)
+            binding.txtIssue.text =
+                "Issue Type: " + ComplaintHistory.complaintList[pos].complaintIssue
+            binding.txtDesc.text =
+                "Description: \n            " + ComplaintHistory.complaintList[pos].complaintDesc
 
+            binding.txtLocation.text = "Location \n"+
+                    "Long: "+ComplaintHistory.complaintList[pos].complaintLong+
+                    "Latn: "+ComplaintHistory.complaintList[pos].complaintLatn
             binding.txtTicketNo.text="Ticket No: " +ComplaintHistory.complaintList[pos].complaintTicketNo
             binding.txtStatus.text="Current Status: "+ComplaintHistory.complaintList[pos].complaintStatus
 
@@ -61,7 +69,7 @@ class ComplaintDetail: AppCompatActivity() ,ComplaintDetailInterface {
             startActivity(intent)
         }
 
-        binding.btnCancel.isEnabled = ComplaintHistory.complaintList[pos].complaintStatus != "Cancelled"
+        binding.btnCancel.isEnabled = ComplaintHistory.complaintList[pos].complaintStatus == "Active"
         binding.btnCancel.setOnClickListener {
          val presentator = ComplaintDetailPresentator(this,
                                applicationContext,this@ComplaintDetail)
