@@ -8,8 +8,6 @@ import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.joinhub.complaintprotaluser.Adapters.PackageListAdapter
-import com.joinhub.complaintprotaluser.R
-import com.joinhub.complaintprotaluser.databinding.FragmentAllPackagesBinding
 import com.joinhub.complaintprotaluser.databinding.FragmentUnlimitedPackageBinding
 import com.joinhub.complaintprotaluser.interfaces.PackageInterface
 import com.joinhub.complaintprotaluser.models.PackageDetails
@@ -25,19 +23,19 @@ class UnlimitedPackagesFragment: Fragment(), PackageInterface {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         binding= FragmentUnlimitedPackageBinding.inflate(inflater,container,false)
 
-        AllPackagesFragment.listPack = mutableListOf()
+        listPack = mutableListOf()
         presenatator= PackagePresenatator(this@UnlimitedPackagesFragment, requireActivity())
-        if(AllPackagesFragment.listPack.isEmpty()){
+        if(listPack.isEmpty()){
             presenatator.loadAllPack(true)
         }else{
-            setUpRecyclerView(AllPackagesFragment.listPack)
+            setUpRecyclerView(listPack)
         }
         binding.swipeLay.setOnRefreshListener {
-            AllPackagesFragment.listPack.clear()
-            presenatator.loadAllPack(false)
+            listPack.clear()
+            presenatator.loadAllPack(true)
         }
         return binding.root
     }
@@ -54,8 +52,7 @@ class UnlimitedPackagesFragment: Fragment(), PackageInterface {
     }
 
     override fun onSuccess(list: MutableList<PackageDetails>) {
-        AllPackagesFragment.listPack.addAll(list)
-
+        listPack.addAll(list)
         setUpRecyclerView(list)
         binding.progressBar.visibility= View.GONE
         binding.swipeLay.isRefreshing= false

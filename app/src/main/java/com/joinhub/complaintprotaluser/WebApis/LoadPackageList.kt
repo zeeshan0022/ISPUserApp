@@ -15,7 +15,7 @@ class LoadPackageList {
     fun loadData(value:Boolean): SoapObject {
         val request = SoapObject(Constants.WSDL_TARGET_NAMESPACE, OPERATION_NAME)
         val pi = PropertyInfo()
-        pi.setName("valye")
+        pi.setName("value")
         pi.value = value
         pi.setType(Boolean::class.java)
         request.addProperty(pi)
