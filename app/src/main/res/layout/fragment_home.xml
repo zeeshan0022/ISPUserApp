@@ -318,6 +318,7 @@
             app:cardBackgroundColor="?attr/backgroundColor"
             app:cardCornerRadius="0dp"
             app:cardElevation="5dp"
+            android:visibility="gone"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/materialCardView">
@@ -515,11 +516,14 @@
                     android:textSize="15sp" />
 
                 <androidx.recyclerview.widget.RecyclerView
-                    android:layout_width="match_parent"
                     android:id="@+id/recTopRatedPack"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
                     android:layout_below="@id/txtTop"
-                    android:layout_margin="5dp"
-                    android:layout_height="match_parent">
+                    android:layout_marginStart="5dp"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginEnd="5dp"
+                    android:layout_marginBottom="5dp">
 
                 </androidx.recyclerview.widget.RecyclerView>
             </RelativeLayout>

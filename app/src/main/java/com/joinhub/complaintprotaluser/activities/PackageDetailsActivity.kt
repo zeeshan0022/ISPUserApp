@@ -12,7 +12,6 @@ import com.joinhub.complaintprotaluser.bottomsheets.PackageUpgradeBottomSheet
 import com.joinhub.complaintprotaluser.databinding.ActivityPackageDetailsBinding
 import com.joinhub.complaintprotaluser.fragments.AllPackagesFragment
 import com.joinhub.complaintprotaluser.fragments.UnlimitedPackagesFragment
-import com.joinhub.complaintprotaluser.huaweiIAPLab.SubscriptionContract
 import com.joinhub.complaintprotaluser.utilties.Constants
 import kotlin.properties.Delegates
 
@@ -49,8 +48,8 @@ class PackageDetailsActivity : AppCompatActivity(){
             binding.txtRate.text="Rs. "+ preference.getStringpreference("pkgRate",null)+"\\month"
             binding.txtSpeed.text= "Speed: "+ preference.getStringpreference("pkgSpeed",null)
             binding.txtSpeed.text= "Volume: "+ preference.getStringpreference("pkgVolume",null)
-            if(preference.getStringpreference("pkgBanner",null)!=null){
-                byteArray= preference.getStringpreference("pkgBanner",null)!!.toByteArray()
+            if(preference.getStringpreference("pkgBanner",null).equals(null)){
+                byteArray= preference.getStringpreference("pkgBanner", null).toByteArray()
                 val bitmap = BitmapFactory.decodeByteArray(byteArray, 0, byteArray.size)
                binding.imgBanner.setImageBitmap(bitmap)
             }
@@ -98,9 +97,7 @@ class PackageDetailsActivity : AppCompatActivity(){
         }
     }
 
-    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
-        super.onActivityResult(requestCode, resultCode, data)
-    }
+
     private fun initt() {
         if(MainActivity.themeBool){
             Constants.darkThemeStyle(this)

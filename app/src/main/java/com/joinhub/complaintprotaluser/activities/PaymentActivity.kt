@@ -25,6 +25,8 @@ class PaymentActivity : AppCompatActivity() {
     lateinit var binding: ActivityPaymentBinding
     //lateinit var mWebView: WebView
     var postData = ""
+    lateinit var price:String
+
     private val STORE_ID = "ENTER_STORE_ID"
     private val HASH_KEY = "ENTER_HASH_KEY"
     private val POST_BACK_URL1 = "http://localhost/easypay/order_confirm.php"
@@ -36,14 +38,29 @@ class PaymentActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityPaymentBinding.inflate(layoutInflater)
         setContentView(binding.root)
+       val bundle= intent.extras
+       if(bundle!=null){
+           price= bundle.getString("charges").toString()
+           Toast.makeText(applicationContext,price,Toast.LENGTH_LONG).show()
+           if(bundle.getString("type")!! == "JazzCash"){
+               try {
 
-        try {
+                   JazzCashPayment()
+                   //    EasyPaisaPayment()
+               } catch (ex: Exception) {
+                   Toast.makeText(this, "ConnectWithXML: " + ex.message, Toast.LENGTH_SHORT).show()
+               }
+           }else{
+               try {
 
-            JazzCashPayment()
-            //    EasyPaisaPayment()
-        } catch (ex: Exception) {
-            Toast.makeText(this, "ConnectWithXML: " + ex.message, Toast.LENGTH_SHORT).show()
-        }
+                   JazzCashPayment()
+                   //    EasyPaisaPayment()
+               } catch (ex: Exception) {
+                   Toast.makeText(this, "ConnectWithXML: " + ex.message, Toast.LENGTH_SHORT).show()
+               }
+           }
+       }
+
     }
 
     fun JazzCashPayment() {
@@ -53,8 +70,6 @@ class PaymentActivity : AppCompatActivity() {
         binding.activityPaymentWebView.webViewClient = MyWebViewClient()
         webSettings.domStorageEnabled = true
         binding.activityPaymentWebView.addJavascriptInterface(FormDataInterface(), "FORMOUT")
-
-        var price = "200"
         println("AhmadLogs: price_before : $price")
 
         val values = price.split("\\.").toTypedArray()
@@ -98,7 +113,7 @@ class PaymentActivity : AppCompatActivity() {
         val pp_TxnCurrency = "PKR"
         val pp_BillReference = "billRef"
         val pp_Description = "Description of transaction"
-        var pp_SecureHash = ""
+        var pp_SecureHash: String
         val pp_mpf_1 = "1"
         val pp_mpf_2 = "2"
         val pp_mpf_3 = "3"
@@ -132,8 +147,7 @@ class PaymentActivity : AppCompatActivity() {
         sortedString += pp_mpf_5
 
         pp_SecureHash = php_hash_hmac(sortedString, IntegritySalt)
-        println("AhmadLogs: sortedString : $sortedString")
-        println("AhmadLogs: pp_SecureHash : $pp_SecureHash")
+
 
         try {
             postData += (URLEncoder.encode("pp_Version", "UTF-8")

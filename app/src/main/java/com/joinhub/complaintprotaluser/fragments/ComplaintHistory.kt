@@ -26,7 +26,7 @@ val type = arrayOf("All","Active", "Solved", "Rejected", "Working","Cancelled")
 class ComplaintHistory(): Fragment(), ComplaintHistoryInterface {
 
     lateinit var adapter:ComplaintHistoryAdapter
-
+    lateinit var methodType:String
     private var _binding:FragmentComplaintHistoryBinding? = null
     private val binding get() = _binding!!
     lateinit var  preference: Preference

@@ -1,15 +1,13 @@
 package com.joinhub.complaintprotaluser.presentator
 
 import android.app.Activity
-import com.joinhub.complaintprotaluser.WebApis.LoadArea
-import com.joinhub.complaintprotaluser.WebApis.LoadPackageDetail
-import com.joinhub.complaintprotaluser.WebApis.LoadSRDetail
-import com.joinhub.complaintprotaluser.WebApis.LoadUserData
+import com.joinhub.complaintprotaluser.WebApis.*
 import com.joinhub.complaintprotaluser.interfaces.HomeInterface
 import com.joinhub.complaintprotaluser.models.AreaModel
 import com.joinhub.complaintprotaluser.models.PackageDetails
 import com.joinhub.complaintprotaluser.models.ServiceModel
 import com.joinhub.complaintprotaluser.models.UserModel
+import org.ksoap2.serialization.SoapObject
 import org.ksoap2.serialization.SoapPrimitive
 import javax.xml.parsers.ParserConfigurationException
 
@@ -127,6 +125,35 @@ class HomePresentator(
                     }else{
                         loginInterface.onError(obj.toString())
                     }
+                }
+            }
+        }.start()
+    }
+
+    fun loadPackages(){
+        val list:MutableList<PackageDetails> = mutableListOf()
+        Thread{
+            val loadPackageList= LoadPackageList()
+            val root= loadPackageList.loadData(false)
+            activity.runOnUiThread {
+                for ( index in 0 until root.propertyCount){
+                    val childObj: SoapObject = root.getProperty(index) as SoapObject
+                    list.add(
+                        PackageDetails(Integer.parseInt(childObj.getProperty("pkgID").toString()),
+                            childObj.getPropertyAsString("pkgName"),
+                            childObj.getPropertyAsString("pkgDesc"),
+                            childObj.getPropertyAsString("pkgSpeed"),
+                            childObj.getPropertyAsString("pkgVolume"),
+                            childObj.getPropertyAsString("pkgRate").toDouble(),
+                            childObj.getPropertyAsString("pkgBouns_Speed"),
+                            childObj.getPropertyAsString("pkgVolume").toByteArray()
+                        )
+                    )
+                }
+                if(list.isEmpty()){
+                    loginInterface.onError(root.toString())
+                }else{
+                    loginInterface.onPackageSuccess(list)
                 }
             }
         }.start()

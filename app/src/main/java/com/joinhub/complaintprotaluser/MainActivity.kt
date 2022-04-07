@@ -5,12 +5,9 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
-import android.widget.Toast
 import androidx.appcompat.app.AppCompatDelegate
-import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import com.joinhub.alphavpn.utility.Preference
-import com.joinhub.complaintprotaluser.DatabaseHandler.ConnectionHelper
 import com.joinhub.complaintprotaluser.activities.DashBoardActivity
 import com.joinhub.complaintprotaluser.activities.SigninActivity
 import com.joinhub.complaintprotaluser.databinding.ActivityMainBinding
@@ -30,7 +27,7 @@ class MainActivity : AppCompatActivity() {
         setContentView(binding.root)
         init()
         val preference= Preference(baseContext)
-        if(preference.getStringpreference("userName",null)!=null){
+        if(preference.isBooleenPreference("user")){
             Handler(Looper.getMainLooper()).postDelayed({
                 startActivity(Intent(baseContext,DashBoardActivity::class.java))
                 finish()
@@ -66,4 +63,6 @@ class MainActivity : AppCompatActivity() {
 
 
     }
+
+
 }

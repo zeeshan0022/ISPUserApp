@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/card"
+        android:layout_width="match_parent"
+        android:layout_marginTop="5dp"
+        android:foreground="?attr/selectableItemBackground"
+        android:layout_height="60dp"
+        android:layout_marginBottom="5dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginEnd="10dp"
+        app:cardCornerRadius="0dp"
+        app:cardElevation="5dp">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <View
+                android:id="@+id/view"
+                android:layout_width="5dp"
+                android:layout_height="match_parent"
+                android:background="?attr/colorSecondary" />
+
+            <TextView
+                android:id="@+id/txtPackName"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="5dp"
+                android:layout_toEndOf="@id/view"
+                android:fontFamily="@font/montserratbold"
+                android:text="Unlimited Bundle"
+                android:textColor="?attr/colorOnPrimary" />
+
+            <TextView
+                android:id="@+id/txtSpeed"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/txtPackName"
+                android:layout_marginStart="10dp"
+                android:layout_toEndOf="@id/view"
+                android:fontFamily="@font/montserratregular"
+                android:text="Status: Paid"
+                android:textColor="?attr/colorOnPrimary"
+                android:textSize="12sp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="5dp"
+                android:id="@+id/txtRate"
+                android:layout_marginEnd="10dp"
+                android:fontFamily="@font/montserratsemibold"
+                android:text="Rs.2000"
+                android:textColor="?attr/colorSecondary" />
+
+
+            <TextView
+                android:id="@+id/txtMethod"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="5dp"
+                android:layout_marginEnd="10dp"
+                android:fontFamily="@font/montserratsemibold"
+                android:text="Payment Method: EasyPaisa"
+                android:textColor="?attr/colorOnPrimary"
+                android:textSize="12sp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentBottom="true"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="5dp"
+                android:id="@+id/txtdate"
+                android:layout_marginEnd="10dp"
+                android:fontFamily="@font/montserratsemibold"
+                android:text="Due: 15 Dec"
+                android:textColor="?attr/colorOnPrimary"
+                android:textSize="12sp" />
+        </RelativeLayout>
+    </com.google.android.material.card.MaterialCardView>
+</RelativeLayout>

@@ -53,7 +53,10 @@ class ComplaintDetail: AppCompatActivity() ,ComplaintDetailInterface {
 
         }
         binding.iconWhatsapp.setOnClickListener {
-            val browserIntent = Intent(Intent.ACTION_VIEW, Uri.parse("https://api.whatsapp.com/send?phone=92"+ preference.getStringpreference("servicePhone",null)?.removeRange(0,0)))
+            val browserIntent = Intent(Intent.ACTION_VIEW, Uri.parse("https://api.whatsapp.com/send?phone=92"+ preference.getStringpreference(
+                "servicePhone",
+                null
+            ).removeRange(0,0)))
             startActivity(browserIntent)
         }
 

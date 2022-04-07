@@ -21,173 +21,25 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <com.google.android.material.card.MaterialCardView
-        android:id="@+id/materialCardView7"
+    <androidx.recyclerview.widget.RecyclerView
         android:layout_width="match_parent"
-        android:layout_height="60dp"
-        android:layout_marginStart="10dp"
-        android:layout_marginTop="20dp"
-        android:layout_marginEnd="10dp"
-        app:cardCornerRadius="0dp"
-        app:cardElevation="5dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
+        android:id="@+id/recBillingHistory"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/txtTitle">
 
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
-
-            <View
-                android:id="@+id/view"
-                android:layout_width="5dp"
-                android:layout_height="match_parent"
-                android:background="?attr/colorSecondary" />
-
-            <TextView
-                android:id="@+id/title"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="10dp"
-                android:layout_marginTop="5dp"
-                android:layout_toEndOf="@id/view"
-                android:fontFamily="@font/montserratbold"
-                android:text="Unlimited Bundle"
-                android:textColor="?attr/colorOnPrimary" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_below="@id/title"
-                android:layout_marginStart="10dp"
-                android:layout_toEndOf="@id/view"
-                android:fontFamily="@font/montserratregular"
-                android:text="Speed: 18Mpbs"
-                android:textColor="?attr/colorOnPrimary"
-                android:textSize="12sp" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentEnd="true"
-                android:layout_marginStart="10dp"
-                android:layout_marginTop="5dp"
-
-                android:layout_marginEnd="10dp"
-                android:fontFamily="@font/montserratsemibold"
-                android:text="Rs.2000"
-                android:textColor="?attr/colorSecondary" />
-
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentBottom="true"
-                android:layout_marginStart="10dp"
-                android:layout_marginTop="5dp"
-                android:layout_marginEnd="10dp"
-                android:fontFamily="@font/montserratsemibold"
-                android:text="Payment Method: EasyPaisa"
-                android:textColor="?attr/colorOnPrimary"
-                android:textSize="12sp" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentEnd="true"
-                android:layout_alignParentBottom="true"
-                android:layout_marginStart="10dp"
-                android:layout_marginTop="5dp"
-                android:layout_marginEnd="10dp"
-                android:fontFamily="@font/montserratsemibold"
-                android:text="Due: 15 Dec"
-                android:textColor="?attr/colorOnPrimary"
-                android:textSize="12sp" />
-        </RelativeLayout>
-    </com.google.android.material.card.MaterialCardView>
-
-
-    <com.google.android.material.card.MaterialCardView
-        android:layout_width="match_parent"
-        android:layout_height="60dp"
-        android:layout_marginStart="10dp"
-        android:layout_marginEnd="10dp"
-        app:cardCornerRadius="0dp"
-        android:layout_marginTop="20dp"
-        app:cardElevation="5dp"
+    </androidx.recyclerview.widget.RecyclerView>
+    <com.github.ybq.android.spinkit.SpinKitView
+        android:id="@+id/progressBar"
+        style="@style/SpinKitView.Wave"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:visibility="gone"
+        android:layout_gravity="center"
+        app:SpinKit_Color="?attr/colorSecondary"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/materialCardView7">
+        app:layout_constraintTop_toTopOf="parent" />
 
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
-
-            <View
-                android:id="@+id/view1"
-                android:layout_width="5dp"
-                android:layout_height="match_parent"
-                android:background="?attr/colorSecondary" />
-
-            <TextView
-                android:id="@+id/title1"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="10dp"
-                android:layout_marginTop="5dp"
-                android:layout_toEndOf="@id/view1"
-                android:fontFamily="@font/montserratbold"
-                android:text="Unlimited Bundle"
-                android:textColor="?attr/colorOnPrimary" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_below="@id/title1"
-                android:layout_marginStart="10dp"
-                android:layout_toEndOf="@id/view1"
-                android:fontFamily="@font/montserratregular"
-                android:text="Speed: 18Mpbs"
-                android:textColor="?attr/colorOnPrimary"
-                android:textSize="12sp" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentEnd="true"
-                android:layout_marginStart="10dp"
-                android:layout_marginTop="5dp"
-
-                android:layout_marginEnd="10dp"
-                android:fontFamily="@font/montserratsemibold"
-                android:text="Rs.2000"
-                android:textColor="?attr/colorSecondary" />
-
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentBottom="true"
-                android:layout_marginStart="10dp"
-                android:layout_marginTop="5dp"
-                android:layout_marginEnd="10dp"
-                android:fontFamily="@font/montserratsemibold"
-                android:text="Payment Method: EasyPaisa"
-                android:textColor="?attr/colorOnPrimary"
-                android:textSize="12sp" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentEnd="true"
-                android:layout_alignParentBottom="true"
-                android:layout_marginStart="10dp"
-                android:layout_marginTop="5dp"
-                android:layout_marginEnd="10dp"
-                android:fontFamily="@font/montserratsemibold"
-                android:text="Due: 15 Dec"
-                android:textColor="?attr/colorOnPrimary"
-                android:textSize="12sp" />
-        </RelativeLayout>
-    </com.google.android.material.card.MaterialCardView>
 </androidx.constraintlayout.widget.ConstraintLayout>

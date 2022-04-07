@@ -10,12 +10,12 @@ import java.util.*
 class PackageUpgradePresentatorval(val interfaces: PackageUpgradeInterface, private val activity: Activity) {
 
 
-    fun upgradePackage(userID:Int , pkgID:Int, method:String, charges:Double){
+    fun upgradePackage(userID:Int , pkgID:Int, method:String, charges:String, isUpgrade:Boolean, pkgName:String){
         interfaces.onStarts()
         val api = UpgradePackageDetails()
         Thread{
             val result= api.saveData(pkgID, method,Constants.getDate() ,"Paid", userID, charges,
-            Constants.getMonth(), Constants.getYear())
+            Constants.getMonth(), Constants.getYear(), isUpgrade,pkgName)
 
             activity.runOnUiThread {
                 if(result=="true"){

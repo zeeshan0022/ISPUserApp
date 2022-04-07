@@ -15,10 +15,11 @@ import java.util.*
 class UpgradePackageDetails {
     val SOAP_ACTION: String = "http://tempuri.org/savePackage"
     val OPERATION_NAME = "savePackage"
-    fun saveData(pkgID: Int,method:String, date:String,status:String,userID:Int, charges:Double,
-                       month: String, year: String): String {
+    fun saveData(pkgID: Int,method:String, date:String,status:String,userID:Int, charges:String,
+                       month: String, year: String, isUp:Boolean, name:String): String {
         val request = SoapObject(Constants.WSDL_TARGET_NAMESPACE, OPERATION_NAME)
         var pi = PropertyInfo()
+
         pi.setName("pkgID")
         pi.value =pkgID
         pi.setType(Int::class.java)
@@ -31,10 +32,18 @@ class UpgradePackageDetails {
         request.addProperty(pi)
         //
         pi = PropertyInfo()
+        pi.setName("upgrade")
+        pi.value = isUp
+        pi.setType(Boolean::class.java)
+        request.addProperty(pi)
+        //
+        pi = PropertyInfo()
         pi.setName("method")
         pi.value =method
         pi.setType(String::class.java)
         request.addProperty(pi)
+        //
+
         //
         pi = PropertyInfo()
         pi.setName("date")
@@ -51,7 +60,7 @@ class UpgradePackageDetails {
         pi = PropertyInfo()
         pi.setName("charges")
         pi.value = charges
-        pi.setType(Double::class.java)
+        pi.setType(String::class.java)
         request.addProperty(pi)
 //
         pi = PropertyInfo()
@@ -65,7 +74,12 @@ class UpgradePackageDetails {
         pi.value = year
         pi.setType(String::class.java)
         request.addProperty(pi)
-
+        //
+        pi = PropertyInfo()
+        pi.setName("pkgname")
+        pi.value =name
+        pi.setType(String::class.java)
+        request.addProperty(pi)
 
 
         val envelope = SoapSerializationEnvelope(

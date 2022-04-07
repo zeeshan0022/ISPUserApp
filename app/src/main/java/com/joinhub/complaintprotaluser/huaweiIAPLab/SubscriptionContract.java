@@ -17,6 +17,9 @@
 package com.joinhub.complaintprotaluser.huaweiIAPLab;
 
 import android.app.Activity;
+import android.content.Intent;
+
+import androidx.activity.result.ActivityResultLauncher;
 
 import com.huawei.hms.iap.entity.OwnedPurchasesResult;
 import com.huawei.hms.iap.entity.ProductInfo;
@@ -82,8 +85,9 @@ public interface SubscriptionContract {
          * Buy a subscription product according to productId.
          *
          * @param productId The ID of the product to be purchased.
+         * @param resultLauncher
          */
-        void buy(String productId);
+        void buy(String productId, ActivityResultLauncher<Intent> resultLauncher);
 
         /**
          * Show subscription detail.

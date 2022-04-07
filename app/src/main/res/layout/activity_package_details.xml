@@ -29,6 +29,7 @@
                 <ImageView
                     android:id="@+id/imgBanner"
                     android:layout_width="match_parent"
+                    android:src="?attr/colorSecondary"
                     android:layout_height="match_parent" />
 
                 <com.google.android.material.card.MaterialCardView

@@ -22,6 +22,9 @@
         android:usesCleartextTraffic="true"
         tools:targetApi="m">
         <activity
+            android:name=".FullProfileActivity"
+            android:exported="false" />
+        <activity
             android:name=".activities.PaymentActivity"
             android:exported="false" />
         <activity

@@ -15,5 +15,5 @@ interface HomeInterface {
     fun onAreaLoad(model: AreaModel)
 
     fun onPackageLoad(model:PackageDetails)
-
+    fun onPackageSuccess(list: MutableList<PackageDetails>)
 }

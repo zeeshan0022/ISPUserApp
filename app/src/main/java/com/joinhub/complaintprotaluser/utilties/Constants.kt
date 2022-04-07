@@ -25,7 +25,7 @@ class Constants {
     companion object {
         const val WSDL_TARGET_NAMESPACE = "http://tempuri.org/"
 
-         const val SOAP_ADDRESS = "http://192.168.0.102:2020/WebService1.asmx"
+         const val SOAP_ADDRESS = "http://192.168.0.103:2020/WebService1.asmx"
          const val Jazz_MerchantID = "MC204650"
          const val Jazz_Password = "vv949110gw"
          const val Jazz_IntegritySalt = "433zzx94v0"
@@ -123,7 +123,7 @@ class Constants {
             val c = Calendar.getInstance().time
             println("Current time => $c")
 
-            val df = SimpleDateFormat("dd-MM-yyyy", Locale.getDefault())
+            val df = SimpleDateFormat("dd/MM/yyyy", Locale.getDefault())
             return df.format(c)
         }
         fun getYear():String{
@@ -133,8 +133,9 @@ class Constants {
         }
         fun getMonth():String{
             val calendar: Calendar = Calendar.getInstance()
+            val i= calendar.get(Calendar.MONTH)+1
+            return i.toString()
 
-            return calendar.get(Calendar.MONTH).toString()
         }
         fun bytesToHex(bytes: ByteArray): String {
             val hexArray = "0123456789abcdef".toCharArray()
@@ -148,6 +149,12 @@ class Constants {
                 j++
             }
             return String(hexChars)
+        }
+
+        fun getDate1(): String {
+            val calendar: Calendar = Calendar.getInstance()
+
+            return calendar.get(Calendar.DATE).toString()
         }
 
         //

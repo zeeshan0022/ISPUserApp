@@ -70,6 +70,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
+                        android:id="@+id/txtCharges"
                         android:layout_marginTop="10dp"
                         android:fontFamily="@font/montserratsemibold"
                         android:text="Rs: 1000"
@@ -198,12 +199,14 @@
             <LinearLayout
                 android:layout_width="wrap_content"
                 android:weightSum="8"
+                android:gravity="center"
                 android:layout_below="@id/title"
                 android:layout_height="match_parent">
             <com.google.android.material.card.MaterialCardView
                 android:id="@+id/cardMaster"
                 android:layout_weight="2"
                 android:layout_width="0dp"
+                android:visibility="gone"
                 android:layout_height="80dp"
                 android:layout_marginStart="10dp"
                 android:layout_marginEnd="10dp"
@@ -223,16 +226,25 @@
               android:layout_weight="2"
                 android:layout_marginStart="5dp"
                 android:layout_marginEnd="10dp"
-
                 app:cardElevation="5dp">
-
-                <ImageView
-
+                <RelativeLayout
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:paddingStart="5dp"
-                    android:paddingEnd="5dp"
-                    android:src="@drawable/easypaisa" />
+                    android:layout_height="match_parent">
+                <CheckBox
+                    android:layout_width="30dp"
+                    android:padding="0dp"
+                    android:id="@+id/easyPasiaCheckBox"
+                    android:layout_alignParentEnd="true"
+                    android:layout_height="30dp"/>
+
+                    <ImageView
+
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:paddingStart="5dp"
+                        android:paddingEnd="5dp"
+                        android:src="@drawable/easypaisa" />
+                </RelativeLayout>
             </com.google.android.material.card.MaterialCardView>
 
             <com.google.android.material.card.MaterialCardView
@@ -246,13 +258,23 @@
                 android:layout_toEndOf="@id/cardEasyPaisa"
                 app:cardElevation="5dp">
 
-                <ImageView
-
+                <RelativeLayout
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:src="@drawable/jazzcash" />
+                    android:layout_height="match_parent">
+                    <CheckBox
+                        android:layout_width="30dp"
+                        android:padding="0dp"
+                        android:id="@+id/JazzCheckBox"
+                        android:layout_alignParentEnd="true"
+                        android:layout_height="30dp"/>
 
+                    <ImageView
 
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:src="@drawable/jazzcash" />
+
+</RelativeLayout>
             </com.google.android.material.card.MaterialCardView>
 
             <com.google.android.material.card.MaterialCardView
@@ -263,11 +285,20 @@
                 android:layout_marginStart="10dp"
                 android:layout_marginEnd="10dp"
                 app:cardElevation="5dp">
-
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+                    <CheckBox
+                        android:layout_width="30dp"
+                        android:padding="0dp"
+                        android:id="@+id/HuaweiCheckBox"
+                        android:layout_alignParentEnd="true"
+                        android:layout_height="30dp"/>
                 <ImageView
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:src="@drawable/huawei" />
+                </RelativeLayout>
 
             </com.google.android.material.card.MaterialCardView>
             </LinearLayout>

@@ -9,7 +9,10 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.Fragment
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.joinhub.alphavpn.utility.Preference
+import com.joinhub.complaintprotaluser.Adapters.HomePackageAdapter
 import com.joinhub.complaintprotaluser.activities.PackageDetailsActivity
 import com.joinhub.complaintprotaluser.databinding.FragmentHomeBinding
 import com.joinhub.complaintprotaluser.interfaces.HomeInterface
@@ -44,8 +47,9 @@ class HomeFragment : Fragment(), HomeInterface {
         StrictMode.setThreadPolicy(policy)
         presenatator= HomePresentator(this@HomeFragment, requireActivity())
         preference= Preference(requireContext())
+        presenatator.loadPackages()
         if(preference.getIntpreference("userID")==0){
-            presenatator.loadData(preference.getStringpreference("userName").toString())
+            presenatator.loadData(preference.getStringpreference("userName"))
         }else{
             //
             binding.txtPhone.text=preference.getStringpreference("userPhone",null)
@@ -54,7 +58,7 @@ class HomeFragment : Fragment(), HomeInterface {
             binding.txtPackName.text= preference.getStringpreference("pkgName",null)
             binding.txtSpeed1.text= preference.getStringpreference("pkgSpeed",null)
             binding.txtVol.text= preference.getStringpreference("pkgVolume",null)
-
+         //   binding.txtPackName.text= preference.getStringpreference("pkgVolume",null)
         }
 
         binding.txtSSID.text= Constants.getWifiSSDID(requireContext())
@@ -134,5 +138,24 @@ class HomeFragment : Fragment(), HomeInterface {
         preference.setStringpreference("pkgBanner",model.pkgBanner.toString())
 
 
+    }
+
+    override fun onPackageSuccess(list: MutableList<PackageDetails>) {
+        setLastestRec(list)
+        setTopRec(list)
+    }
+
+    private fun setTopRec(list: MutableList<PackageDetails>) {
+        list.shuffle()
+        val adapter=HomePackageAdapter(list,requireActivity())
+        binding.recTopRatedPack.layoutManager=LinearLayoutManager(requireContext(),
+                                              RecyclerView.HORIZONTAL,false)
+        binding.recTopRatedPack.adapter=adapter
+    }
+
+    private fun setLastestRec(list: MutableList<PackageDetails>) {
+        val adapter=HomePackageAdapter(list,requireActivity())
+        binding.recLastestPackages.layoutManager=LinearLayoutManager(requireContext(),RecyclerView.HORIZONTAL,false)
+        binding.recLastestPackages.adapter=adapter
     }
 }

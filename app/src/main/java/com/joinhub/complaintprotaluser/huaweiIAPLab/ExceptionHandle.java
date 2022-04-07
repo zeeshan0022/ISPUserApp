@@ -62,7 +62,7 @@ public class ExceptionHandle {
                     Toast.makeText(activity, "Order vr uninstall error!", Toast.LENGTH_SHORT).show();
                     return SOLVED;
                 case OrderStatusCode.ORDER_HWID_NOT_LOGIN:
-                   IapRequestHelper.startResolutionForResult(activity, iapApiException.getStatus(), Constants.REQ_CODE_LOGIN);
+                   //IapRequestHelper.startResolutionForResult(activity, iapApiException.getStatus(), Constants.REQ_CODE_LOGIN);
                     return SOLVED;
                 case OrderStatusCode.ORDER_PRODUCT_OWNED:
                     Toast.makeText(activity, "Product already owned error!", Toast.LENGTH_SHORT).show();

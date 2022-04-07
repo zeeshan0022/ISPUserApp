@@ -17,9 +17,12 @@
 package com.joinhub.complaintprotaluser.huaweiIAPLab;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.content.IntentSender;
 import android.text.TextUtils;
 import android.util.Log;
+
+import androidx.activity.result.ActivityResultLauncher;
 
 import com.huawei.hmf.tasks.OnFailureListener;
 import com.huawei.hmf.tasks.OnSuccessListener;
@@ -199,17 +202,19 @@ public class IapRequestHelper {
      * @param status This parameter contains the pendingIntent object of the payment page.
      * @param reqCode Result code.
      */
-    public static void startResolutionForResult(Activity activity, Status status, int reqCode) {
+    public static void startResolutionForResult(Activity activity, Status status, int reqCode, ActivityResultLauncher resultLauncher) {
         if (status == null) {
             Log.e(TAG, "status is null");
             return;
         }
         if (status.hasResolution()) {
-            try {
-                status.startResolutionForResult(activity, reqCode);
-            } catch (IntentSender.SendIntentException exp) {
-                Log.e(TAG, exp.getMessage());
-            }
+            //resultLauncher.launch(status.getResolutionIntent());
+//            try {
+//                status.startResolutionForResult(activity, reqCode);
+//            } catch (IntentSender.SendIntentException e) {
+//                e.printStackTrace();
+//            }
+            resultLauncher.launch(status.getResolutionIntent());
         } else {
             Log.e(TAG, "intent is null");
         }

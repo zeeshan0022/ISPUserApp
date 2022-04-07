@@ -9,8 +9,6 @@ import androidx.recyclerview.widget.RecyclerView
 import com.joinhub.alphavpn.utility.Preference
 import com.joinhub.complaintprotaluser.activities.PackageDetailsActivity
 import com.joinhub.complaintprotaluser.databinding.ItemPackageListBinding
-import com.joinhub.complaintprotaluser.databinding.ListComplaintHistoryItemsBinding
-import com.joinhub.complaintprotaluser.models.ComplaintModel
 import com.joinhub.complaintprotaluser.models.PackageDetails
 
 class PackageListAdapter(val context: Context, private val list:List<PackageDetails>, val unLimit:Boolean): RecyclerView.Adapter<PackageListAdapter.ViewHolder>() {

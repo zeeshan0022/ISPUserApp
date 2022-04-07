@@ -9,8 +9,9 @@ class Preference (private val context:Context){
     var prefsEditor: SharedPreferences.Editor? =appSharedPrefs!!.edit();
 
     var isSync = false
-
-
+    fun logout(){
+        prefsEditor?.clear()?.commit()
+    }
     fun checkPreferenceSet(key_value: String?): Boolean {
         return appSharedPrefs!!.contains(key_value)
     }
@@ -32,12 +33,12 @@ class Preference (private val context:Context){
     }
 
 
-    fun getStringpreference(key_value: String?, default_value: String?): String? {
-        return appSharedPrefs!!.getString(key_value, default_value)
+    fun getStringpreference(key_value: String, default_value: String?): String {
+        return appSharedPrefs!!.getString(key_value, default_value).toString()
     }
 
-    fun getStringpreference(key_value: String?): String? {
-        return appSharedPrefs!!.getString(key_value, "")
+    fun getStringpreference(key_value: String): String {
+        return appSharedPrefs!!.getString(key_value, "").toString()
     }
 
 

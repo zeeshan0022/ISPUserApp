@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:background="@android:color/transparent"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content">
+
+    <ImageView
+        android:id="@+id/image"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:elevation="10dp"
+        android:background="@android:color/transparent"
+        android:layout_marginTop="10dp"
+        android:src="@drawable/ratestar"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/materialCardView"
+        android:layout_width="match_parent"
+        app:cardCornerRadius="10dp"
+        android:layout_marginBottom="10dp"
+        android:layout_height="wrap_content"
+        android:background="@android:color/transparent"
+        android:layout_marginStart="10dp"
+        android:layout_marginEnd="10dp"
+        android:layout_marginTop="65dp"
+
+        app:cardBackgroundColor="?attr/backgroundColor"
+        app:cardElevation="5dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/image" >
+        <RelativeLayout
+            android:layout_marginTop="50dp"
+            android:background="@android:color/transparent"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Please take a moment to rate us"
+                android:textColor="?attr/colorOnPrimary"
+                android:gravity="center"
+                android:textSize="14sp"
+                android:fontFamily="@font/montserratbold"
+                android:id="@+id/tc"
+                android:layout_centerHorizontal="true"/>
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="0.3dp"
+                android:background="?attr/colorSecondary"
+                android:layout_below="@id/tc"
+                android:id="@+id/vc"
+                android:layout_marginStart="20dp"
+                android:layout_marginEnd="20dp"
+                android:layout_marginTop="10dp"/>
+            <com.google.android.material.card.MaterialCardView
+                android:layout_width="match_parent"
+                app:cardElevation="0dp"
+                android:id="@+id/rateuscard"
+                android:layout_marginStart="10dp"
+                android:layout_marginEnd="10dp"
+                android:layout_below="@id/vc"
+                app:cardCornerRadius="0dp"
+                app:cardBackgroundColor="@android:color/transparent"
+                android:foreground="?attr/selectableItemBackground"
+                android:layout_height="40dp">
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_gravity="center"
+                    android:gravity="center"
+                    android:textColor="?attr/colorOnPrimary"
+                    android:fontFamily="@font/montserratsemibold"
+
+                    android:layout_height="match_parent"
+                    android:text="Rate Us"/>
+            </com.google.android.material.card.MaterialCardView>
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="0.3dp"
+                android:layout_below="@id/rateuscard"
+                android:id="@+id/v1"
+                android:background="?attr/colorSecondary"
+                android:layout_marginStart="20dp"
+                android:layout_marginEnd="20dp"/>
+            <com.google.android.material.card.MaterialCardView
+                android:layout_width="match_parent"
+                app:cardElevation="0dp"
+                android:id="@+id/leaveSuggestion"
+                android:layout_marginStart="10dp"
+                android:layout_marginEnd="10dp"
+                android:layout_below="@id/v1"
+                app:cardCornerRadius="0dp"
+                app:cardBackgroundColor="@android:color/transparent"
+                android:foreground="?attr/selectableItemBackground"
+                android:layout_height="40dp">
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_gravity="center"
+                    android:gravity="center"
+                    android:textColor="?attr/colorOnPrimary"
+                    android:fontFamily="@font/montserratsemibold"
+                    android:layout_height="match_parent"
+                    android:text="Leave Us Suggestion"/>
+            </com.google.android.material.card.MaterialCardView>
+        </RelativeLayout>
+
+    </com.google.android.material.card.MaterialCardView>
+
+    <ImageView
+        android:id="@+id/closerate"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_marginTop="20dp"
+        android:background="@drawable/circle_bg"
+
+        android:backgroundTint="?attr/colorSecondary"
+        android:padding="5dp"
+        android:src="@drawable/ic_baseline_close_24"
+        app:layout_constraintEnd_toEndOf="@+id/materialCardView"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="@+id/materialCardView"
+        app:layout_constraintTop_toBottomOf="@+id/materialCardView"
+        app:tint="@color/white" />
+</androidx.constraintlayout.widget.ConstraintLayout>

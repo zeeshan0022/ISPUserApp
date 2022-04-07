@@ -16,8 +16,11 @@
 
 package com.joinhub.complaintprotaluser.huaweiIAPLab;
 
+import android.content.Intent;
 import android.text.TextUtils;
 import android.util.Log;
+
+import androidx.activity.result.ActivityResultLauncher;
 
 import com.huawei.hms.iap.Iap;
 import com.huawei.hms.iap.IapClient;
@@ -121,7 +124,7 @@ public class SubscriptionPresenter implements SubscriptionContract.Presenter {
     }
 
     @Override
-    public void buy(final String productId) {
+    public void buy(final String productId, ActivityResultLauncher<Intent> resultLauncher) {
         // Clear local cache.
         cacheOwnedPurchasesResult = null;
         IapClient iapClient = Iap.getIapClient(view.getActivity());
@@ -135,7 +138,8 @@ public class SubscriptionPresenter implements SubscriptionContract.Presenter {
                 }
 
                 // You should pull up the page to complete the payment process.
-                IapRequestHelper.startResolutionForResult(view.getActivity(), result.getStatus(), Constants.REQ_CODE_BUY);
+                IapRequestHelper.startResolutionForResult(view.getActivity(), result.getStatus(), Constants.REQ_CODE_BUY
+                ,resultLauncher);
             }
 
             @Override

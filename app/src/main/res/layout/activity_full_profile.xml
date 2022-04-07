@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:background="?attr/backgroundColor"
+    android:layout_height="match_parent"
+    tools:context=".FullProfileActivity">
+
+    <com.google.android.material.card.MaterialCardView
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        app:shapeAppearanceOverlay="@style/ShapeAppearance.App.Radius"
+        app:cardBackgroundColor="?attr/colorSecondary"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:elevation="5dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/back"
+                android:src="@drawable/ic_baseline_arrow_back_ios_24"
+                android:layout_marginTop="10dp"
+                android:layout_marginStart="10dp"
+                app:tint="@color/white" />
+
+
+            <com.google.android.material.card.MaterialCardView
+                android:id="@+id/image_Card"
+                android:layout_width="80dp"
+                android:layout_height="80dp"
+                android:layout_marginStart="10dp"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="20dp"
+                android:elevation="2dp"
+                app:cardCornerRadius="40dp">
+
+                <ImageView
+                    android:id="@+id/user_Image"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:src="@drawable/male_avatar" />
+            </com.google.android.material.card.MaterialCardView>
+
+            <ImageView
+                android:layout_width="20dp"
+                android:id="@+id/editImage"
+                android:layout_height="20dp"
+                android:layout_alignBottom="@id/image_Card"
+                android:layout_toEndOf="@id/image_Card"
+                android:src="@drawable/ic_edit"
+                app:tint="@color/white" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:id="@+id/txtName"
+                android:textColor="@color/white"
+                android:textSize="15sp"
+                android:fontFamily="@font/montserratbold"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/image_Card"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:id="@+id/txtPhone"
+                android:textColor="@color/white"
+                android:textSize="14sp"
+                android:fontFamily="@font/montserratsemibold"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/txtName"/>
+        </RelativeLayout>
+    </com.google.android.material.card.MaterialCardView>
+</androidx.constraintlayout.widget.ConstraintLayout>
