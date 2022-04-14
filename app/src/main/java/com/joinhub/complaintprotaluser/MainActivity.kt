@@ -1,16 +1,18 @@
 package com.joinhub.complaintprotaluser
 
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
+import android.os.Build
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
+import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.app.AppCompatDelegate
 import androidx.lifecycle.ViewModelProvider
 import com.joinhub.alphavpn.utility.Preference
 import com.joinhub.complaintprotaluser.activities.DashBoardActivity
 import com.joinhub.complaintprotaluser.activities.SigninActivity
 import com.joinhub.complaintprotaluser.databinding.ActivityMainBinding
+import com.joinhub.complaintprotaluser.services.ComplaintService
 import com.joinhub.complaintprotaluser.utilties.Constants.Companion.darkThemeStyle
 import com.joinhub.complaintprotaluser.utilties.Constants.Companion.lightThemeStyle
 import com.joinhub.complaintprotaluser.viewmodels.ThemeViewModel
@@ -26,6 +28,9 @@ class MainActivity : AppCompatActivity() {
         binding= ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
         init()
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            startForegroundService(Intent(this@MainActivity, ComplaintService::class.java))
+        }
         val preference= Preference(baseContext)
         if(preference.isBooleenPreference("user")){
             Handler(Looper.getMainLooper()).postDelayed({

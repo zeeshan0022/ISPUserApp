@@ -15,12 +15,15 @@ import android.view.Window
 import android.widget.ImageView
 import android.widget.Toast
 import androidx.cardview.widget.CardView
+import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import com.joinhub.alphavpn.utility.Preference
+import com.joinhub.complaintprotaluser.FullProfileActivity
 import com.joinhub.complaintprotaluser.R
 import com.joinhub.complaintprotaluser.activities.SettingsActivity
 import com.joinhub.complaintprotaluser.activities.SigninActivity
 import com.joinhub.complaintprotaluser.databinding.FragmentProfileBinding
+import com.joinhub.complaintprotaluser.utilties.Constants
 
 
 class ProfileFragment : Fragment() {
@@ -35,6 +38,7 @@ class ProfileFragment : Fragment() {
         binding.cardSettings.setOnClickListener{
             startActivity(Intent(context, SettingsActivity::class.java))
         }
+        binding.txtEdit.setOnClickListener { startActivity(Intent(requireContext(),FullProfileActivity::class.java)) }
         binding.txtPName.text= preference.getStringpreference("userFullName")
         binding.txtPhone.text= preference.getStringpreference("userPhone")
         binding.btnLogout.setOnClickListener {
@@ -43,6 +47,7 @@ class ProfileFragment : Fragment() {
             requireActivity().finish()
 
         }
+
         binding.cardRate.setOnClickListener {
             showDialog(requireActivity())
         }
@@ -75,5 +80,14 @@ class ProfileFragment : Fragment() {
         }
         dialogButton.setOnClickListener { dialog.dismiss() }
         dialog.show()
+    }
+
+    override fun onResume() {
+        super.onResume()
+        if(preference.getStringpreference("userImage",null).isNotBlank()){
+            binding.profile.setImageBitmap(Constants.decodeBase64(preference.getStringpreference("userImage")))
+        }else{
+            binding.profile.setImageDrawable(ContextCompat.getDrawable(requireContext(), R.drawable.male_avatar))
+        }
     }
 }

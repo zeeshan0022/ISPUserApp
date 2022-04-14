@@ -2,6 +2,8 @@ package com.joinhub.complaintprotaluser.utilties
 
 import android.app.Activity
 import android.content.Context
+import android.graphics.Bitmap
+import android.graphics.BitmapFactory
 import android.net.wifi.WifiManager
 import android.os.Build
 import android.util.Base64
@@ -158,8 +160,13 @@ class Constants {
         }
 
         //
-    }
 
+        fun decodeBase64(input: String?): Bitmap? {
+            val decodedByte = Base64.decode(input, 0)
+            return BitmapFactory
+                .decodeByteArray(decodedByte, 0, decodedByte.size)
+        }
+    }
 
 
 }

@@ -8,11 +8,13 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.joinhub.alphavpn.utility.Preference
 import com.joinhub.complaintprotaluser.Adapters.HomePackageAdapter
+import com.joinhub.complaintprotaluser.R
 import com.joinhub.complaintprotaluser.activities.PackageDetailsActivity
 import com.joinhub.complaintprotaluser.databinding.FragmentHomeBinding
 import com.joinhub.complaintprotaluser.interfaces.HomeInterface
@@ -157,5 +159,14 @@ class HomeFragment : Fragment(), HomeInterface {
         val adapter=HomePackageAdapter(list,requireActivity())
         binding.recLastestPackages.layoutManager=LinearLayoutManager(requireContext(),RecyclerView.HORIZONTAL,false)
         binding.recLastestPackages.adapter=adapter
+    }
+
+    override fun onResume() {
+        super.onResume()
+        if(preference.getStringpreference("userImage",null).isNotBlank()){
+            binding.profile.setImageBitmap(Constants.decodeBase64(preference.getStringpreference("userImage")))
+        }else{
+            binding.profile.setImageDrawable(ContextCompat.getDrawable(requireContext(), R.drawable.male_avatar))
+        }
     }
 }

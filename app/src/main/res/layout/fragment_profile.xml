@@ -42,7 +42,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:scaleType="centerCrop"
-
+                    android:id="@+id/profile"
                     android:src="@drawable/profileicon" />
             </com.google.android.material.card.MaterialCardView>
 
@@ -72,10 +72,11 @@
                 android:textSize="16sp" />
 
             <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
                 android:layout_alignParentEnd="true"
                 android:layout_centerVertical="true"
+                android:id="@+id/txtEdit"
                 android:layout_marginEnd="20dp"
                 android:src="@drawable/ic_edit"
                 app:tint="@color/white" />
