@@ -27,11 +27,12 @@ import com.joinhub.complaintprotaluser.huaweiIAPLab.SubscriptionContract
 import com.joinhub.complaintprotaluser.huaweiIAPLab.SubscriptionPresenter
 import com.joinhub.complaintprotaluser.huaweiIAPLab.SubscriptionUtils
 import com.joinhub.complaintprotaluser.interfaces.PackageUpgradeInterface
+import com.joinhub.complaintprotaluser.models.PackageDetails
 import com.joinhub.complaintprotaluser.presentator.PackageUpgradePresentatorval
 import com.joinhub.complaintprotaluser.utilties.Constants
 
 
-class PackageUpgradeBottomSheet : BottomSheetDialogFragment() , PackageUpgradeInterface,
+class PackageUpgradeBottomSheet(var model:PackageDetails=PackageDetails()) : BottomSheetDialogFragment() , PackageUpgradeInterface,
     SubscriptionContract.View{
     lateinit var binding: FragmentPackageUpgradeBottomSheetBinding
     companion object {

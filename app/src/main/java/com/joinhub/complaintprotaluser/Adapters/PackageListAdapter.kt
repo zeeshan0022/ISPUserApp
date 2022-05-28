@@ -31,20 +31,12 @@ class PackageListAdapter(val context: Context, private val list:List<PackageDeta
                binding.btnUpgrade.text= "Active Package"
            }
 
+
            binding.btnUpgrade.setOnClickListener {
-               if(preference.getIntpreference("pkgID")==list[position].pkgID) {
-
-                   val i= Intent(context, PackageDetailsActivity::class.java)
-                   i.putExtra("value", false)
-                   context.startActivity(i)
-               }else{
-                   val i= Intent(context, PackageDetailsActivity::class.java)
-                   i.putExtra("value", true)
-                   i.putExtra("pos", position)
-                   i.putExtra("un", unLimit)
-                   context.startActivity(i)
-               }
-
+               val i= Intent(context, PackageDetailsActivity::class.java)
+               i.putExtra("model", list[position])
+               i.putExtra("value", false)
+               context.startActivity(i)
            }
        }
     }

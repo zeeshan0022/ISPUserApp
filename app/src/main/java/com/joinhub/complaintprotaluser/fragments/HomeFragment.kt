@@ -34,10 +34,15 @@ class HomeFragment : Fragment(), HomeInterface {
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
         _binding = FragmentHomeBinding.inflate(inflater, container, false)
         init()
-
         binding.btnPackageDetail.setOnClickListener {
+            val model= PackageDetails(preference.getIntpreference("pkgID"),
+            preference.getStringpreference("pkgName",null),preference.getStringpreference("pkgDesc",null),
+            preference.getStringpreference("pkgSpeed",null),preference.getStringpreference("pkgVolume",null),
+            preference.getStringpreference("pkgRate",null).toDouble(),preference.getStringpreference("pkgBouns_Speed",null),
+            preference.getStringpreference("pkgBanner",null).toByteArray())
          val  i= Intent(requireContext(), PackageDetailsActivity::class.java)
-            i.putExtra("value",false)
+            i.putExtra("model",model)
+            i.putExtra("value",true)
             startActivity(i)
         }
         return binding.root

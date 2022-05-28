@@ -1,28 +1,27 @@
 package com.joinhub.complaintprotaluser.services
 
-import android.app.Notification;
-import android.app.NotificationChannel;
-import android.app.NotificationManager;
-import android.app.Service;
-import android.content.Context;
-import android.content.Intent;
-import android.graphics.Color;
-import android.os.Build;
-import android.os.IBinder;
-
-import android.util.Log;
-import android.widget.Toast
+import android.app.*
+import android.content.Context
+import android.content.Intent
+import android.graphics.Color
+import android.os.Build
+import android.os.IBinder
+import android.util.Log
 import androidx.annotation.Nullable
 import androidx.annotation.RequiresApi
 import androidx.core.app.NotificationCompat
+import com.joinhub.alphavpn.utility.Preference
+import com.joinhub.complaintprotaluser.WebApis.CheckApp
+import com.joinhub.complaintprotaluser.models.ManageApp
 import com.joinhub.complaintprotaluser.receiver.RestartService
 import com.joinhub.complaintprotaluser.utilties.InternetConnection
-import java.util.Timer;
-import java.util.TimerTask;
+import java.util.*
+
 
 class ComplaintService: Service() {
+    private lateinit var model: ManageApp
     var counter = 0
-
+    lateinit var preference:Preference
     override fun onCreate() {
         super.onCreate()
 //        if (Build.VERSION.SDK_INT > Build.VERSION_CODES.O) startMyOwnForeground() else startForeground(
@@ -75,17 +74,68 @@ class ComplaintService: Service() {
     private var timer: Timer? = null
     private var timerTask: TimerTask? = null
     fun startTimer() {
+        preference= Preference(this)
         timer = Timer()
         timerTask = object : TimerTask() {
             override fun run() {
 
 
                 if(InternetConnection.amIConnected(applicationContext)){
-                }else{
+                    checkMaintain()
                 }
             }
         }
-        timer!!.schedule(timerTask, 100000, 100000) //
+        timer!!.schedule(timerTask, 1000000, 1000000) //
+    }
+
+    fun startNotificationListener() {
+        //start's a new thread
+        Thread { //fetching notifications from server
+            buildNotice()
+        }.start()
+    }
+    private fun checkMaintain() {
+        if(preference.getIntpreference("areaID")>0) {
+            Log.d("Notice:", "1")
+            Thread {
+                val api: CheckApp = CheckApp()
+                val obj = api.loadData(preference.getIntpreference("areaID"))
+                if (obj != null) {
+                    if (obj!!.getProperty("id") != null) {
+                        model = ManageApp(
+                            Integer.parseInt(obj.getProperty("id").toString()),
+                            Integer.parseInt(obj.getProperty("areaID").toString()),
+                            obj.getPropertyAsString("status"),
+                            obj.getPropertyAsString("date"),
+                            obj.getPropertyAsString("city"),
+                            obj.getPropertyAsString("startFrom"),
+                            obj.getPropertyAsString("toEnd")
+                        )
+
+                        if (model.id > 0) {
+                            if (preference.getIntpreference("id") != model.id) {
+                                preference.setIntpreference("id", model.id)
+                                Log.d("Notice:", "2")
+
+                                startNotificationListener()
+                            }
+                        }
+
+                    }
+                }
+            }.start()
+        }
+    }
+
+    private fun buildNotice() {
+        val notificationManager = getSystemService(NOTIFICATION_SERVICE) as NotificationManager
+        val notification: Notification = NotificationCompat.Builder(baseContext, "notification_id")
+            .setSmallIcon(android.R.drawable.ic_notification_clear_all)
+            .setContentTitle("title")
+            .setContentText("content")
+            .setDefaults(NotificationCompat.DEFAULT_SOUND)
+            .build()
+        notificationManager.notify(0, notification)
     }
 
     fun stoptimertask() {

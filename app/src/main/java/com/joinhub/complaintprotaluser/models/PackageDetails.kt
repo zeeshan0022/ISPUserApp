@@ -1,7 +1,23 @@
 package com.joinhub.complaintprotaluser.models
 
-data class PackageDetails(val pkgID:Int, val pkgName:String, val pkgDesc:String, val pkgSpeed:String,
-                          val pkgVolume:String, val pkgRate:Double, val pkgBouns_Speed:String, val pkgBanner:ByteArray) {
+import android.os.Parcel
+import android.os.Parcelable
+
+data class PackageDetails(var pkgID:Int=0, var pkgName:String="", var pkgDesc:String="", var pkgSpeed:String="",
+                          var pkgVolume:String="", var pkgRate:Double=0.0, var pkgBouns_Speed:String="",
+                          var pkgBanner:ByteArray="".toByteArray()):Parcelable {
+    constructor(parcel: Parcel) : this(
+        parcel.readInt(),
+        parcel.readString().toString(),
+        parcel.readString().toString(),
+        parcel.readString().toString(),
+        parcel.readString().toString(),
+        parcel.readDouble(),
+        parcel.readString().toString(),
+        parcel.createByteArray()!!
+    ) {
+    }
+
     override fun equals(other: Any?): Boolean {
         if (this === other) return true
         if (javaClass != other?.javaClass) return false
@@ -30,5 +46,30 @@ data class PackageDetails(val pkgID:Int, val pkgName:String, val pkgDesc:String,
         result = 31 * result + pkgBouns_Speed.hashCode()
         result = 31 * result + pkgBanner.contentHashCode()
         return result
+    }
+
+    override fun writeToParcel(parcel: Parcel, flags: Int) {
+        parcel.writeInt(pkgID)
+        parcel.writeString(pkgName)
+        parcel.writeString(pkgDesc)
+        parcel.writeString(pkgSpeed)
+        parcel.writeString(pkgVolume)
+        parcel.writeDouble(pkgRate)
+        parcel.writeString(pkgBouns_Speed)
+        parcel.writeByteArray(pkgBanner)
+    }
+
+    override fun describeContents(): Int {
+        return 0
+    }
+
+    companion object CREATOR : Parcelable.Creator<PackageDetails> {
+        override fun createFromParcel(parcel: Parcel): PackageDetails {
+            return PackageDetails(parcel)
+        }
+
+        override fun newArray(size: Int): Array<PackageDetails?> {
+            return arrayOfNulls(size)
+        }
     }
 }

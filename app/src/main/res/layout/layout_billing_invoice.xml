@@ -1,0 +1,292 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:id="@+id/lay"
+    android:layout_height="match_parent">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:scrollbars="none"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+            <!-- invoice status -->
+            <TextView
+                android:id="@+id/invoice_status"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:background="#E2E2E2"
+                android:gravity="center"
+                android:padding="10dp"
+                android:text="Paid"
+                android:textColor="#28AF20"
+                android:textSize="20px"
+                android:textStyle="bold" />
+            <!-- end invoice status -->
+            <!-- invoice/client data -->
+            <TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:paddingLeft="3dip"
+                android:paddingTop="3dip"
+                android:paddingRight="3dip"
+                android:paddingBottom="24dip"
+                android:stretchColumns="1">
+
+                <TableRow>
+
+                    <TextView
+                        android:id="@+id/invoice_id"
+                        android:padding="3dip"
+                        android:text="ID: 091010-4" />
+
+                    <TextView
+                        android:id="@+id/invoice_date"
+                        android:gravity="right"
+                        android:padding="3dip"
+                        android:text="Date: 09/05/10" />
+                </TableRow>
+
+                <TableRow>
+
+                    <TextView
+                        android:id="@+id/invoice_client"
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        android:paddingLeft="3dip"
+                        android:text="Friends Internet"
+                        android:textSize="16px"
+                        android:textStyle="bold" />
+                    <TextView
+                        android:id="@+id/txtCustomer"
+                        android:layout_width="fill_parent"
+                        android:layout_gravity="end"
+                        android:layout_height="wrap_content"
+                        android:paddingLeft="3dip"
+                        android:text="Customer Name: Zeeshan Nawaz"
+                        android:textSize="16px"
+                        android:textStyle="bold" />
+                </TableRow>
+
+                <TableRow>
+
+                    <TextView
+                        android:id="@+id/invoice_address"
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        android:paddingLeft="3dip"
+                        android:text="Misriyal Road"
+                        android:textSize="16px"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/txtPackName"
+                        android:layout_width="fill_parent"
+                        android:layout_gravity="end"
+                        android:layout_height="wrap_content"
+                        android:paddingLeft="3dip"
+                        android:text="Package Name:Asas"
+                        android:textSize="16px"
+                        android:textStyle="bold" />
+
+
+                </TableRow>
+
+                <TableRow>
+
+                    <TextView
+                        android:id="@+id/invoice_region"
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        android:paddingLeft="3dip"
+                        android:text="Chur Harpal Rawalpindi"
+                        android:textSize="16px"
+                        android:textStyle="bold" />
+                    <TextView
+                        android:id="@+id/txtMethod"
+                        android:layout_width="fill_parent"
+                        android:layout_gravity="end"
+                        android:layout_height="wrap_content"
+                        android:paddingLeft="3dip"
+                        android:text="Payment Method: EasyPaisa"
+                        android:textSize="16px"
+                        android:textStyle="bold" />
+
+                </TableRow>
+
+                <TableRow>
+
+                    <TextView
+                        android:id="@+id/invoice_zip"
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        android:paddingLeft="3dip"
+                        android:text="46000"
+                        android:textSize="16px"
+                        android:textStyle="bold" />
+                    <TextView
+                        android:id="@+id/txtStatus"
+                        android:layout_width="fill_parent"
+                        android:layout_gravity="end"
+                        android:layout_height="wrap_content"
+                        android:paddingLeft="3dip"
+                        android:text="Status: Paid"
+                        android:textSize="16px"
+                        android:textStyle="bold" />
+                </TableRow>
+            </TableLayout>
+            <!-- end invoice/client data -->
+            <!-- invoice items -->
+            <TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:padding="3dip"
+                android:stretchColumns="1">
+                <!-- invoice item labels -->
+                <TableRow android:background="#E2E2E2">
+
+                    <TextView
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        android:padding="3dip"
+                        android:text="Item"
+                        android:textColor="#090909"
+                        android:textSize="13px"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:gravity="right"
+                        android:padding="3dip"
+                        android:text="Cost"
+                        android:textColor="#090909"
+                        android:textSize="13px"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="right"
+                        android:padding="3dip"
+                        android:text="Qty"
+                        android:textColor="#090909"
+                        android:textSize="13px"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:gravity="right"
+                        android:padding="3dip"
+                        android:text="Total"
+                        android:textColor="#090909"
+                        android:textSize="13px"
+                        android:textStyle="bold" />
+                </TableRow>
+                <!-- end invoice item labels -->
+                <!-- invoice items -->
+                <TableRow>
+
+                    <TextView
+                        android:layout_width="150px"
+                        android:layout_height="wrap_content"
+                        android:padding="3dip"
+
+                        android:text="Package Rate"
+                        android:textSize="15px" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:gravity="right"
+                        android:padding="3dip"
+                        android:id="@+id/txtRate"
+                        android:text=""
+                        android:textSize="15px" />
+
+                    <TextView
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="right"
+                        android:padding="3dip"
+                        android:text="1"
+                        android:textSize="15px" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:gravity="right"
+                        android:id="@+id/txtTotal"
+                        android:padding="3dip"
+                        android:text="$500.00"
+                        android:textSize="15px" />
+                </TableRow>
+
+<!--                <TableRow>-->
+
+<!--                    <TextView-->
+<!--                        android:layout_width="150px"-->
+<!--                        android:layout_height="wrap_content"-->
+<!--                        android:padding="3dip"-->
+<!--                        android:text="Wordpress Theming Hours"-->
+<!--                        android:textSize="15px" />-->
+
+<!--                    <TextView-->
+<!--                        android:layout_width="wrap_content"-->
+<!--                        android:layout_height="wrap_content"-->
+<!--                        android:gravity="right"-->
+<!--                        android:padding="3dip"-->
+<!--                        android:text="$30.00"-->
+<!--                        android:textSize="15px" />-->
+
+<!--                    <TextView-->
+<!--                        android:layout_width="fill_parent"-->
+<!--                        android:layout_height="wrap_content"-->
+<!--                        android:gravity="right"-->
+<!--                        android:padding="3dip"-->
+<!--                        android:text="116"-->
+<!--                        android:textSize="15px" />-->
+
+<!--                    <TextView-->
+<!--                        android:layout_width="wrap_content"-->
+<!--                        android:layout_height="wrap_content"-->
+<!--                        android:gravity="right"-->
+<!--                        android:padding="3dip"-->
+<!--                        android:text="$7480.00"-->
+<!--                        android:textSize="15px" />-->
+<!--                </TableRow>-->
+                <!-- end invoice items -->
+
+            </TableLayout>
+            <!-- end invoice items -->
+            <!-- invoice notes -->
+            <TextView
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:paddingLeft="6dip"
+                android:paddingTop="12dip"
+                android:text="Notes:"
+                android:textColor="#E2E2E2"
+                android:textStyle="bold" />
+
+            <TextView
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:padding="6dip"
+                android:text="For any query contact: \nPhone No: 03205582355\nEmail: zeeshann0022@gmail.com" />
+            <!-- end invoice notes -->
+            <!-- invoice buttons -->
+
+            <!-- end invoice buttons -->
+        </LinearLayout>
+    </ScrollView>
+</androidx.constraintlayout.widget.ConstraintLayout>

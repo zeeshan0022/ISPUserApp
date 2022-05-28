@@ -8,7 +8,6 @@ import com.joinhub.complaintprotaluser.models.PackageDetails
 import com.joinhub.complaintprotaluser.models.ServiceModel
 import com.joinhub.complaintprotaluser.models.UserModel
 import org.ksoap2.serialization.SoapObject
-import org.ksoap2.serialization.SoapPrimitive
 import javax.xml.parsers.ParserConfigurationException
 
 

@@ -25,6 +25,9 @@ class SigninActivity : AppCompatActivity(), LoginInterface {
             checkData(binding.userIDeditText.text.toString().trim(),
                        binding.passwordeditText.text.toString().trim())
         }
+        binding.txtContactUs.setOnClickListener {
+            startActivity(Intent(applicationContext, ContactUsActivity::class.java))
+        }
         binding.txtForgotPassword.setOnClickListener{
             startActivity(Intent(applicationContext, ForgotActivity::class.java))
         }

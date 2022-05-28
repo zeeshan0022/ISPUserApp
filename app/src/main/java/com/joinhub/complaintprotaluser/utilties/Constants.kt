@@ -108,6 +108,8 @@ class Constants {
             return hashString
         }
 
+
+
         fun php_hash_hmac(data: String, secret: String): String {
             var returnString: String = ""
             try {
@@ -166,6 +168,13 @@ class Constants {
             return BitmapFactory
                 .decodeByteArray(decodedByte, 0, decodedByte.size)
         }
+        val ARG_USERS = "users"
+        val ARG_RECEIVER = "receiver"
+        val ARG_RECEIVER_UID = "receiver_uid"
+        val ARG_CHAT_ROOMS = "chat_rooms"
+        val ARG_FIREBASE_TOKEN = "firebaseToken"
+        val ARG_FRIENDS = "friends"
+        val ARG_UID = "uid"
     }
 
 

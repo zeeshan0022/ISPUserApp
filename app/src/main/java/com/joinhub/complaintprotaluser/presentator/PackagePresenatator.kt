@@ -27,7 +27,7 @@ class PackagePresenatator(val interfaces: PackageInterface, private val activity
                             childObj.getPropertyAsString("pkgVolume"),
                             childObj.getPropertyAsString("pkgRate").toDouble(),
                             childObj.getPropertyAsString("pkgBouns_Speed"),
-                            childObj.getPropertyAsString("pkgVolume").toByteArray()
+                            childObj.getProperty("pkgBanner").toString().toByteArray()
                         )
                     )
                 }
