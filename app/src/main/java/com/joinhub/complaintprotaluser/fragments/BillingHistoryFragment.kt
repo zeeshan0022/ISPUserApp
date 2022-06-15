@@ -27,7 +27,7 @@ class BillingHistoryFragment : Fragment(), BillingHistory<BillingModel> {
         binding= FragmentBillingHistoryBinding.inflate(layoutInflater,container,false)
         list1= mutableListOf()
         if(list1.isEmpty()){
-            val presentator= BillingPresentator(this, requireActivity())
+            val presentator= BillingPresentator<Any>(this, requireActivity())
             presentator.loadHistory(Preference(requireContext()).getIntpreference("userID"))
         }else{
             setUpRec(list1)

@@ -26,6 +26,9 @@
         android:usesCleartextTraffic="true"
         tools:targetApi="m">
         <activity
+            android:name=".SpeedTestActivity"
+            android:exported="false" />
+        <activity
             android:name=".activities.ContactUsActivity"
             android:exported="false" />
         <activity
@@ -76,6 +79,9 @@
 
         <service
             android:name=".services.ComplaintService"
+            android:enabled="true" />
+        <service
+            android:name=".services.ChatService"
             android:enabled="true" />
 
         <receiver

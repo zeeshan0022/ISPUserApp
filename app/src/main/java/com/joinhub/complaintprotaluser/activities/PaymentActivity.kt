@@ -10,11 +10,13 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.joinhub.complaintprotaluser.bottomsheets.PackageUpgradeBottomSheet
 import com.joinhub.complaintprotaluser.databinding.ActivityPaymentBinding
+import com.joinhub.complaintprotaluser.utilties.Constants
 import com.joinhub.complaintprotaluser.utilties.Constants.Companion.Jazz_IntegritySalt
 import com.joinhub.complaintprotaluser.utilties.Constants.Companion.Jazz_MerchantID
 import com.joinhub.complaintprotaluser.utilties.Constants.Companion.Jazz_Password
 import com.joinhub.complaintprotaluser.utilties.Constants.Companion.paymentReturnUrl
 import com.joinhub.complaintprotaluser.utilties.Constants.Companion.php_hash_hmac
+import com.nouman.jazzcashlib.JazzCash
 import java.io.UnsupportedEncodingException
 import java.net.URLEncoder
 import java.text.SimpleDateFormat
@@ -34,6 +36,7 @@ class PaymentActivity : AppCompatActivity() {
     private val TRANSACTION_POST_URL1 = "https://easypay.easypaisa.com.pk/easypay/Index.jsf"
     private val TRANSACTION_POST_URL2 = "https://easypay.easypaisa.com.pk/easypay/Confirm.jsf"
    // private var price = ""
+    lateinit var jazzCash: JazzCash
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityPaymentBinding.inflate(layoutInflater)
@@ -45,8 +48,18 @@ class PaymentActivity : AppCompatActivity() {
            if(bundle.getString("type")!! == "JazzCash"){
                try {
 
-                   JazzCashPayment()
-                   //    EasyPaisaPayment()
+                   jazzCash = JazzCash(
+                       this,
+                       this,
+                       ResponseActivity::class.java,
+                       binding.activityPaymentWebView,
+                       Constants.Jazz_MerchantID,
+                       Constants.Jazz_Password, Constants.Jazz_IntegritySalt,
+                       Constants.paymentReturnUrl,
+                       1.0.toString()
+                   )
+
+                   jazzCash.integrateNow()
                } catch (ex: Exception) {
                    Toast.makeText(this, "ConnectWithXML: " + ex.message, Toast.LENGTH_SHORT).show()
                }

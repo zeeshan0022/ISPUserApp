@@ -4,8 +4,6 @@ import android.app.Activity
 import com.joinhub.complaintprotaluser.WebApis.UpgradePackageDetails
 import com.joinhub.complaintprotaluser.interfaces.PackageUpgradeInterface
 import com.joinhub.complaintprotaluser.utilties.Constants
-import java.text.SimpleDateFormat
-import java.util.*
 
 class PackageUpgradePresentatorval(val interfaces: PackageUpgradeInterface, private val activity: Activity) {
 

@@ -72,29 +72,32 @@
         </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/textInputLayout"
-            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
-            android:layout_width="0dp"
+            android:id="@+id/feedbackLayout"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:background="@android:color/transparent"
             android:elevation="5dp"
-            android:hint="Feedback Type"
-            android:orientation="horizontal"
+            android:hint="Subject"
+            android:textColorHint="?attr/colorOnSecondary"
             app:boxStrokeColor="?attr/colorSecondary"
+            app:endIconMode="clear_text"
+            app:errorEnabled="true"
+            app:hintAnimationEnabled="true"
+            app:hintEnabled="true"
+            app:hintTextColor="?attr/colorOnSecondary"
             android:layout_marginStart="20dp"
             android:layout_marginEnd="20dp"
-            android:layout_marginTop="20dp"
-            app:endIconTint="?attr/colorSecondary"
-            app:hintTextColor="?attr/colorOnPrimary"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
+            android:layout_marginTop="10dp"
             app:layout_constraintTop_toBottomOf="@+id/phoneLayout">
 
-            <AutoCompleteTextView
-                android:id="@+id/filled_exposed_dropdown"
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/subjEditText"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-
-                android:inputType="none" />
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/montserratregular"
+                android:inputType="text"
+                android:textColor="?attr/colorOnPrimary" />
         </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.textfield.TextInputLayout
@@ -118,7 +121,7 @@
             app:hintTextColor="?attr/colorOnSecondary"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textInputLayout">
+            app:layout_constraintTop_toBottomOf="@+id/feedbackLayout">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/descEditText"

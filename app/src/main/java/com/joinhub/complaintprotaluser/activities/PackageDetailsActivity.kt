@@ -5,29 +5,21 @@ import android.graphics.BitmapFactory
 import android.os.Bundle
 import android.util.Base64
 import android.view.View
-import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.joinhub.alphavpn.utility.Preference
 import com.joinhub.complaintprotaluser.MainActivity
 import com.joinhub.complaintprotaluser.bottomsheets.PackageUpgradeBottomSheet
 import com.joinhub.complaintprotaluser.databinding.ActivityPackageDetailsBinding
-import com.joinhub.complaintprotaluser.fragments.AllPackagesFragment
-import com.joinhub.complaintprotaluser.fragments.UnlimitedPackagesFragment
 import com.joinhub.complaintprotaluser.models.PackageDetails
 import com.joinhub.complaintprotaluser.utilties.Constants
-import kotlin.properties.Delegates
 
 
 class PackageDetailsActivity : AppCompatActivity(){
-    lateinit var binding:ActivityPackageDetailsBinding
-    lateinit var preference: Preference
-    lateinit var model:PackageDetails
-    lateinit var bottomSheet: PackageUpgradeBottomSheet
-    companion object {
-        var pos by Delegates.notNull<Int>()
-        var unLimit by Delegates.notNull<Boolean>()
-    }
-    lateinit var byteArray: ByteArray
+    private lateinit var binding:ActivityPackageDetailsBinding
+    private lateinit var preference: Preference
+    private lateinit var model:PackageDetails
+    private lateinit var bottomSheet: PackageUpgradeBottomSheet
+    private lateinit var byteArray: ByteArray
     @SuppressLint("SetTextI18n")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -48,7 +40,7 @@ class PackageDetailsActivity : AppCompatActivity(){
         }
         binding.txtTOC.setOnClickListener {  }
         binding.btnActivate.setOnClickListener {
-            bottomSheet= PackageUpgradeBottomSheet()
+            bottomSheet= PackageUpgradeBottomSheet(model)
             bottomSheet =
                 PackageUpgradeBottomSheet().newInstance()
             bottomSheet.show(supportFragmentManager,

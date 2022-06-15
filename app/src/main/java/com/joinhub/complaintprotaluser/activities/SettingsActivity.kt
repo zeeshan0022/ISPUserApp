@@ -1,19 +1,17 @@
 package com.joinhub.complaintprotaluser.activities
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.app.AppCompatDelegate
 import androidx.lifecycle.ViewModelProvider
 import com.joinhub.complaintprotaluser.MainActivity
-import com.joinhub.complaintprotaluser.R
 import com.joinhub.complaintprotaluser.databinding.ActivitySettingsBinding
-import com.joinhub.complaintprotaluser.databinding.FragmentProfileBinding
 import com.joinhub.complaintprotaluser.utilties.Constants
 import com.joinhub.complaintprotaluser.viewmodels.ThemeViewModel
 
 class SettingsActivity : AppCompatActivity() {
-    lateinit var binding: ActivitySettingsBinding
-    lateinit var viewTheme: ThemeViewModel
+    private lateinit var binding: ActivitySettingsBinding
+    private lateinit var viewTheme: ThemeViewModel
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding= ActivitySettingsBinding.inflate(layoutInflater)

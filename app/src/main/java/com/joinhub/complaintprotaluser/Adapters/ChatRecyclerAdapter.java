@@ -7,14 +7,15 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.google.firebase.auth.FirebaseAuth;
 import com.joinhub.alphavpn.utility.Preference;
 import com.joinhub.complaintprotaluser.R;
 import com.joinhub.complaintprotaluser.models.Chat;
 
 import java.util.List;
+import java.util.Objects;
 
 
 public class ChatRecyclerAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
@@ -22,7 +23,7 @@ public class ChatRecyclerAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
     private static final int VIEW_TYPE_OTHER = 2;
     Preference preference;
     Context context;
-    private List<Chat> mChats;
+    private final List<Chat> mChats;
 
     public ChatRecyclerAdapter(List<Chat> chats, Context context) {
         mChats = chats;
@@ -34,8 +35,9 @@ public class ChatRecyclerAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
         notifyItemInserted(mChats.size() - 1);
     }
 
+    @NonNull
     @Override
-    public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+    public RecyclerView.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         LayoutInflater layoutInflater = LayoutInflater.from(parent.getContext());
         RecyclerView.ViewHolder viewHolder = null;
         preference= new Preference(parent.getContext());
@@ -49,11 +51,11 @@ public class ChatRecyclerAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
                 viewHolder = new OtherChatViewHolder(viewChatOther);
                 break;
         }
-        return viewHolder;
+        return Objects.requireNonNull(viewHolder);
     }
 
     @Override
-    public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, int position) {
         if (TextUtils.equals(mChats.get(position).getSenderUid(),
                 preference.getStringpreference("userName",null))) {
             configureMyChatViewHolder((MyChatViewHolder) holder, position);

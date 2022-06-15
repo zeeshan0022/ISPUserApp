@@ -1,5 +1,6 @@
 package com.joinhub.complaintprotaluser.services;
 
+import android.annotation.SuppressLint;
 import android.app.Notification;
 import android.app.NotificationChannel;
 import android.app.NotificationManager;
@@ -13,13 +14,16 @@ import com.google.firebase.messaging.FirebaseMessagingService;
 import com.google.firebase.messaging.RemoteMessage;
 import com.joinhub.complaintprotaluser.R;
 
+import java.util.Objects;
+
+@SuppressLint("MissingFirebaseInstanceTokenRefresh")
 public class FirebasePushMessaging extends FirebaseMessagingService {
 
     @RequiresApi(api = Build.VERSION_CODES.O)
     @Override
     public void onMessageReceived(@NonNull RemoteMessage message) {
 
-        String title= message.getNotification().getTitle();
+        String title= Objects.requireNonNull(message.getNotification()).getTitle();
         String text= message.getNotification().getBody();
         String channel_id= "HEAD_UP_NOTIFICATION";
         NotificationChannel channel= null;

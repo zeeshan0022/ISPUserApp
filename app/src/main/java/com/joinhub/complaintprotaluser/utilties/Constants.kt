@@ -9,6 +9,7 @@ import android.os.Build
 import android.util.Base64
 import android.view.View
 import android.view.Window
+import androidx.annotation.RequiresApi
 import androidx.core.view.WindowInsetsControllerCompat
 import com.google.android.gms.common.ConnectionResult
 import com.google.android.gms.common.GoogleApiAvailability
@@ -16,6 +17,8 @@ import com.joinhub.complaintprotaluser.R
 import java.security.InvalidKeyException
 import java.security.NoSuchAlgorithmException
 import java.text.SimpleDateFormat
+import java.time.LocalDate
+import java.time.format.DateTimeFormatter
 import java.util.*
 import javax.crypto.*
 import javax.crypto.spec.SecretKeySpec
@@ -27,13 +30,34 @@ class Constants {
     companion object {
         const val WSDL_TARGET_NAMESPACE = "http://tempuri.org/"
 
-         const val SOAP_ADDRESS = "http://192.168.0.103:2020/WebService1.asmx"
-         const val Jazz_MerchantID = "MC204650"
-         const val Jazz_Password = "vv949110gw"
-         const val Jazz_IntegritySalt = "433zzx94v0"
-         const val paymentReturnUrl = "http://localhost/order.php"
+         const val SOAP_ADDRESS = "http://192.168.0.102:2020/WebService1.asmx"
+         const val Jazz_MerchantID = "MC32336"
+         const val Jazz_Password = "45u52gxa36"
+         const val Jazz_IntegritySalt = "u791w26e91"
+         const val paymentReturnUrl = "http://test.loadx.pk/pay_with_jazzcash"
 
+        @RequiresApi(Build.VERSION_CODES.O)
+        fun getDateOnly(date:String): String {
+            val ld: LocalDate = LocalDate.parse(
+                date,
+                DateTimeFormatter.ofPattern("dd/MM/yyyy")
+            )
+//            val year: Int = ld.year
+//            val month: Int = ld.monthValue
+//            val day: Int = ld.dayOfMonth
+           return ld.dayOfMonth.toString()
+        }
 
+        fun getMonthFromDate(value:String): Int {
+            val sdf = SimpleDateFormat("dd/MM/yyyy", Locale.getDefault())
+            val parse = sdf.parse(value)
+            val calendar = Calendar.getInstance()
+            calendar.time = parse!!
+            val date = calendar[Calendar.DATE]
+            val month = calendar[Calendar.MONTH] + 1
+            val year = calendar[Calendar.YEAR]
+            return month
+        }
         fun checkGoogleAPI(activity: Activity): Boolean {
             val googleApiAvailability = GoogleApiAvailability.getInstance()
             val status = googleApiAvailability.isGooglePlayServicesAvailable(activity)

@@ -1,26 +1,18 @@
 package com.joinhub.complaintprotaluser.activities
 
-import android.app.Activity
 import android.content.Intent
-import android.os.Build
 import android.os.Bundle
-import android.util.Log
-import android.widget.Toast
-import com.google.android.material.bottomnavigation.BottomNavigationView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import androidx.navigation.findNavController
 import androidx.navigation.ui.AppBarConfiguration
-import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
-import com.huawei.hms.iap.entity.OrderStatusCode
+import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.joinhub.alphavpn.utility.Preference
 import com.joinhub.complaintprotaluser.FullProfileActivity
 import com.joinhub.complaintprotaluser.MainActivity
 import com.joinhub.complaintprotaluser.R
-
 import com.joinhub.complaintprotaluser.databinding.ActivityDashBoardBinding
-import com.joinhub.complaintprotaluser.huaweiIAPLab.SubscriptionUtils
 import com.joinhub.complaintprotaluser.utilties.Constants
 
 class DashBoardActivity : AppCompatActivity() {

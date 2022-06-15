@@ -18,21 +18,18 @@ import com.huawei.hms.iap.entity.OwnedPurchasesResult
 import com.huawei.hms.iap.entity.ProductInfo
 import com.joinhub.alphavpn.utility.Preference
 import com.joinhub.complaintprotaluser.activities.DashBoardActivity
-import com.joinhub.complaintprotaluser.activities.PackageDetailsActivity
 import com.joinhub.complaintprotaluser.activities.PaymentActivity
 import com.joinhub.complaintprotaluser.databinding.FragmentPackageUpgradeBottomSheetBinding
-import com.joinhub.complaintprotaluser.fragments.AllPackagesFragment
-import com.joinhub.complaintprotaluser.fragments.UnlimitedPackagesFragment
 import com.joinhub.complaintprotaluser.huaweiIAPLab.SubscriptionContract
 import com.joinhub.complaintprotaluser.huaweiIAPLab.SubscriptionPresenter
 import com.joinhub.complaintprotaluser.huaweiIAPLab.SubscriptionUtils
 import com.joinhub.complaintprotaluser.interfaces.PackageUpgradeInterface
 import com.joinhub.complaintprotaluser.models.PackageDetails
 import com.joinhub.complaintprotaluser.presentator.PackageUpgradePresentatorval
-import com.joinhub.complaintprotaluser.utilties.Constants
 
 
-class PackageUpgradeBottomSheet(var model:PackageDetails=PackageDetails()) : BottomSheetDialogFragment() , PackageUpgradeInterface,
+class PackageUpgradeBottomSheet(var model:PackageDetails= PackageDetails()) : BottomSheetDialogFragment() ,
+    PackageUpgradeInterface,
     SubscriptionContract.View{
     lateinit var binding: FragmentPackageUpgradeBottomSheetBinding
     companion object {
@@ -75,26 +72,26 @@ class PackageUpgradeBottomSheet(var model:PackageDetails=PackageDetails()) : Bot
         }
         binding.btnProceed.setOnClickListener {
             if(methodType == "huaweiIAP"){
-                presenter!!.buy("pkg$pkgId", resultLauncher);
+                presenter!!.buy("pkg$pkgId", resultLauncher)
             }else{
                 val intent= Intent(requireContext(), PaymentActivity::class.java)
                 intent.putExtra("type", methodType)
-                intent.putExtra("charges",price)
+                intent.putExtra("charges",model.pkgRate.toString())
                 resultLauncher.launch(intent)
             }
         }
         return  binding.root
     }
 
-    var resultLauncher = registerForActivityResult(StartActivityForResult()) { result ->
+    private var resultLauncher = registerForActivityResult(StartActivityForResult()) { result ->
         if (result.resultCode == RESULT_OK) {
             // There are no request codes
             val data: Intent? = result.data
             if (result.resultCode == RESULT_OK) {
                 // Get String data from Intent
-                val ResponseCode: String = data!!.getStringExtra("pp_ResponseCode").toString()
-                println("DateFn: ResponseCode:$ResponseCode")
-                if (ResponseCode == "000") {
+                val responseCode: String = data!!.getStringExtra("pp_ResponseCode").toString()
+                println("DateFn: ResponseCode:$responseCode")
+                if (responseCode == "000") {
                     Toast.makeText(getApplicationContext(), "Payment Success", Toast.LENGTH_SHORT)
                         .show()
                     updatePackage()
@@ -111,61 +108,33 @@ class PackageUpgradeBottomSheet(var model:PackageDetails=PackageDetails()) : Bot
     private fun updatePackage() {
         val preference= Preference(requireContext())
 
-        if(!PackageDetailsActivity.unLimit){
-            preference.setIntpreference("pkgID", AllPackagesFragment.listPack[PackageDetailsActivity.pos].pkgID)
-            preference.setStringpreference("pkgName",AllPackagesFragment.listPack[PackageDetailsActivity.pos].pkgName)
-            preference.setStringpreference("pkgDesc",AllPackagesFragment.listPack[PackageDetailsActivity.pos].pkgDesc)
-            preference.setStringpreference("pkgSpeed",AllPackagesFragment.listPack[PackageDetailsActivity.pos].pkgSpeed)
-            preference.setStringpreference("pkgVolume",AllPackagesFragment.listPack[PackageDetailsActivity.pos].pkgVolume)
-            preference.setStringpreference("pkgRate",AllPackagesFragment.listPack[PackageDetailsActivity.pos].pkgRate.toString())
-            preference.setStringpreference("pkgBouns_Speed",AllPackagesFragment.listPack[PackageDetailsActivity.pos].pkgBouns_Speed)
-            preference.setStringpreference("pkgBanner",AllPackagesFragment.listPack[PackageDetailsActivity.pos].pkgBanner.toString())
-            val presentator= PackageUpgradePresentatorval(this@PackageUpgradeBottomSheet, requireActivity())
-            presentator.upgradePackage(preference.getIntpreference("userID"),
-                AllPackagesFragment.listPack[PackageDetailsActivity.pos].pkgID,
-                type.toString(),AllPackagesFragment.listPack[PackageDetailsActivity.pos].pkgRate.toString(),true,
-                AllPackagesFragment.listPack[PackageDetailsActivity.pos].pkgName)
-        }else{
-            preference.setIntpreference("pkgID", UnlimitedPackagesFragment.listPack[PackageDetailsActivity.pos].pkgID)
-            preference.setStringpreference("pkgName",UnlimitedPackagesFragment.listPack[PackageDetailsActivity.pos].pkgName)
-            preference.setStringpreference("pkgDesc",UnlimitedPackagesFragment.listPack[PackageDetailsActivity.pos].pkgDesc)
-            preference.setStringpreference("pkgSpeed",UnlimitedPackagesFragment.listPack[PackageDetailsActivity.pos].pkgSpeed)
-            preference.setStringpreference("pkgVolume",UnlimitedPackagesFragment.listPack[PackageDetailsActivity.pos].pkgVolume)
-            preference.setStringpreference("pkgRate",UnlimitedPackagesFragment.listPack[PackageDetailsActivity.pos].pkgRate.toString())
-            preference.setStringpreference("pkgBouns_Speed",UnlimitedPackagesFragment.listPack[PackageDetailsActivity.pos].pkgBouns_Speed)
-            preference.setStringpreference("pkgBanner",UnlimitedPackagesFragment.listPack[PackageDetailsActivity.pos].pkgBanner.toString())
-
-            val presentator= PackageUpgradePresentatorval(this@PackageUpgradeBottomSheet, requireActivity())
-            presentator.upgradePackage(preference.getIntpreference("userID"),
-                UnlimitedPackagesFragment.listPack[PackageDetailsActivity.pos].pkgID,
-                type.toString(),UnlimitedPackagesFragment.listPack[PackageDetailsActivity.pos].pkgRate.toString(),true,
-                UnlimitedPackagesFragment.listPack[PackageDetailsActivity.pos].pkgName)
-        }
-
+        preference.setIntpreference("pkgID", model.pkgID)
+        preference.setStringpreference("pkgName",model.pkgName)
+        preference.setStringpreference("pkgDesc",model.pkgDesc)
+        preference.setStringpreference("pkgSpeed",model.pkgSpeed)
+        preference.setStringpreference("pkgVolume",model.pkgVolume)
+        preference.setStringpreference("pkgRate",model.pkgRate.toString())
+        preference.setStringpreference("pkgBouns_Speed",model.pkgBouns_Speed)
+        preference.setStringpreference("pkgBanner",model.pkgBanner.toString())
+        val presentator= PackageUpgradePresentatorval(this@PackageUpgradeBottomSheet, requireActivity())
+        presentator.upgradePackage(preference.getIntpreference("userID"),
+            model.pkgID,
+            type.toString(),model.pkgRate.toString(),true,
+            model.pkgName)
     }
 
     @SuppressLint("SetTextI18n")
     private fun init() {
-        presenter= SubscriptionPresenter(this);
+        presenter= SubscriptionPresenter(this)
         preference= Preference(requireContext())
         binding.txtCName.text= preference.getStringpreference("userFullName", null)
         binding.txtPhone.text= preference.getStringpreference("userPhone", null)
-        if(!PackageDetailsActivity.unLimit){
-            price= AllPackagesFragment.listPack[PackageDetailsActivity.pos].pkgRate.toString()
-            pkgId=AllPackagesFragment.listPack[PackageDetailsActivity.pos].pkgID.toString()
-            binding.txtName.text= AllPackagesFragment.listPack[PackageDetailsActivity.pos].pkgName
-            binding.txtspeedVolume.text="Speed: "+AllPackagesFragment.listPack[PackageDetailsActivity.pos].pkgSpeed+
-                    "  Volume: "+ AllPackagesFragment.listPack[PackageDetailsActivity.pos].pkgVolume
-            binding.txtTotal.text="Rs."+ AllPackagesFragment.listPack[PackageDetailsActivity.pos].pkgRate
-
-        }else{
-            price= UnlimitedPackagesFragment.listPack[PackageDetailsActivity.pos].pkgRate.toString()
-            pkgId=UnlimitedPackagesFragment.listPack[PackageDetailsActivity.pos].pkgID.toString()
-            binding.txtName.text= UnlimitedPackagesFragment.listPack[PackageDetailsActivity.pos].pkgName
-            binding.txtspeedVolume.text="Speed: "+UnlimitedPackagesFragment.listPack[PackageDetailsActivity.pos].pkgSpeed+
-                    "  Volume: "+ UnlimitedPackagesFragment.listPack[PackageDetailsActivity.pos].pkgVolume
-            binding.txtTotal.text="Rs."+ UnlimitedPackagesFragment.listPack[PackageDetailsActivity.pos].pkgRate
-        }
+            price= model.pkgRate.toString()
+            pkgId=model.pkgID.toString()
+            binding.txtName.text= model.pkgName
+            binding.txtspeedVolume.text="Speed: "+model.pkgSpeed+
+                    "  Volume: "+ model.pkgVolume
+            binding.txtTotal.text="Rs."+ model.pkgRate
     }
 
 

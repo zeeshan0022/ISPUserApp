@@ -15,6 +15,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
+import androidx.core.content.ContentProviderCompat.requireContext
 import androidx.test.core.app.ApplicationProvider
 import com.huawei.hmf.tasks.OnSuccessListener
 import com.huawei.hms.iap.Iap
@@ -26,19 +27,30 @@ import com.joinhub.complaintprotaluser.R
 import com.joinhub.complaintprotaluser.activities.PackageDetailsActivity
 import com.joinhub.complaintprotaluser.activities.PaymentActivity
 import com.joinhub.complaintprotaluser.databinding.FragmentBillingHomeBinding
+import com.joinhub.complaintprotaluser.fragments.BillingHistoryFragment.Companion.list1
+import com.joinhub.complaintprotaluser.fragments.BillingHomeFragment.Companion.binding
 import com.joinhub.complaintprotaluser.huaweiIAPLab.*
+import com.joinhub.complaintprotaluser.interfaces.BillingHistory
 import com.joinhub.complaintprotaluser.interfaces.PackageUpgradeInterface
+import com.joinhub.complaintprotaluser.models.BillingModel
+import com.joinhub.complaintprotaluser.presentator.BillingPresentator
 import com.joinhub.complaintprotaluser.presentator.PackageUpgradePresentatorval
 import com.joinhub.complaintprotaluser.utilties.Constants
+import com.joinhub.complaintprotaluser.utilties.Constants.Companion.getDateOnly
 import org.json.JSONException
 
 
-class BillingHomeFragment : Fragment() , SubscriptionContract.View, PackageUpgradeInterface {
-   companion object{ lateinit var binding:FragmentBillingHomeBinding}
+class BillingHomeFragment : Fragment() , SubscriptionContract.View, PackageUpgradeInterface ,
+    BillingHistory<BillingModel> {
+   companion object{ @SuppressLint("StaticFieldLeak")
+   lateinit var binding:FragmentBillingHomeBinding
+   lateinit var list1: MutableList<BillingModel>}
+
     lateinit var preference: Preference
     private val TAG = "ConsumptionActivity"
     private var mClient: IapClient? = null
     lateinit var methodType:String
+
     lateinit var presenterS: SubscriptionPresenter
     var isHuawei: Boolean= false
     @SuppressLint("SetTextI18n")
@@ -51,42 +63,35 @@ class BillingHomeFragment : Fragment() , SubscriptionContract.View, PackageUpgra
         preference= Preference(requireContext())
         mClient = Iap.getIapClient(requireActivity())
         initt()
-        if(preference.getStringpreference("month",null).isNullOrBlank()) {
-            if (preference.getStringpreference("month", null) == Constants.getMonth()
-                && preference.getStringpreference("year", null) == Constants.getYear()
-            ) {
-                binding.btnPayBills.isEnabled = false
-                binding.txtDueDate.text = preference.getStringpreference("date", null) +
-                        "/" + preference.getStringpreference("month", null) +
-                        "/" + preference.getStringpreference("year", null)
-                binding.txtStatus.text = preference.getStringpreference("status")
-            } else {
-                if ((Integer.parseInt(Constants.getDate1()) -
-                            Integer.parseInt(preference.getStringpreference("date", null))
-                            ) + 30 > 30
-                ) {
-                    preference.setStringpreference("status", "UnPaid")
-                    binding.txtStatus.text = "unPaid"
-                    binding.txtDueDate.text =
-                        "15/" + Constants.getMonth() + "/" + Constants.getYear()
-
-                } else {
+        list1= mutableListOf()
+        if(list1.isEmpty()){
+            val presentator= BillingPresentator<Any>(this, requireActivity())
+            presentator.loadHistory(Preference(requireContext()).getIntpreference("userID"))
+        }else{
+            if(list1.size>0) {
+                val model = list1[list1.lastIndex]
+                if(model.month== Constants.getMonth()){
                     binding.btnPayBills.isEnabled = false
+                    binding.txtDueDate.text = model.billingDate
+                    binding.txtStatus.text = model.status
+                }else{
+                    if(Constants.getMonth()>model.month){
+                        binding.txtStatus.text = "unPaid"
+                        binding.txtDueDate.text =
+                            "15/" + Constants.getMonth() + "/" + Constants.getYear()
 
-                    binding.txtDueDate.text = preference.getStringpreference("date", null) +
-                            "/" + preference.getStringpreference("month", null) +
-                            "/" + preference.getStringpreference("year", null)
-                    binding.txtStatus.text = preference.getStringpreference("status")
+                    }
 
                 }
+            }else{
+                preference.setStringpreference("status", "UnPaid")
+                binding.txtStatus.text = "UnPaid"
+                binding.txtDueDate.text =
+                    "15/" + Constants.getMonth() + "/" + Constants.getYear()
             }
-        }else{
-           // Toast.makeText(requireContext(),"YEss",Toast.LENGTH_LONG).show()
-            preference.setStringpreference("status", "UnPaid")
-            binding.txtStatus.text = "UnPaid"
-            binding.txtDueDate.text =
-                "15/" + Constants.getMonth() + "/" + Constants.getYear()
+
         }
+
         return binding.root
     }
 
@@ -187,8 +192,8 @@ class BillingHomeFragment : Fragment() , SubscriptionContract.View, PackageUpgra
                         ApplicationProvider.getApplicationContext(),
                         "Payment Success",
                         Toast.LENGTH_SHORT
-                    )
-                        .show()
+                    ).show()
+                    updatePackage()
                 }else{
                     Toast.makeText(requireContext(),"Failed",Toast.LENGTH_LONG).show()
                 }
@@ -232,8 +237,7 @@ class BillingHomeFragment : Fragment() , SubscriptionContract.View, PackageUpgra
         val preference= Preference(requireContext())
 
             val presentator= PackageUpgradePresentatorval(this@BillingHomeFragment, requireActivity())
-            presentator.upgradePackage(
-                preference.getIntpreference("userID"),
+            presentator.upgradePackage(preference.getIntpreference("userID"),
                preference.getIntpreference("pkgID"),
                methodType,preference.getStringpreference("pkgRate",null),
                 false, preference.getStringpreference("pkgName",null))
@@ -250,5 +254,30 @@ class BillingHomeFragment : Fragment() , SubscriptionContract.View, PackageUpgra
 
     override fun onError(e: String) {
         Toast.makeText(context,e, Toast.LENGTH_LONG).show()
+    }
+
+    override fun onSuccess(list: MutableList<BillingModel>) {
+        list1.addAll(list)
+        if(list1.size>0) {
+            val model = list1[list1.lastIndex]
+            if(model.month== Constants.getMonth()){
+                binding.btnPayBills.isEnabled = false
+                binding.txtDueDate.text = model.billingDate
+                binding.txtStatus.text = model.status
+            }else{
+                if(Constants.getMonth()>model.month){
+                    binding.txtStatus.text = "unPaid"
+                    binding.txtDueDate.text =
+                        "15/" + Constants.getMonth() + "/" + Constants.getYear()
+
+                }
+
+            }
+        }else{
+            preference.setStringpreference("status", "UnPaid")
+            binding.txtStatus.text = "UnPaid"
+            binding.txtDueDate.text =
+                "15/" + Constants.getMonth() + "/" + Constants.getYear()
+        }
     }
 }

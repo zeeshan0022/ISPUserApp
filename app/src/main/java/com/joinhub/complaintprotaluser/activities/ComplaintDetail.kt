@@ -81,7 +81,7 @@ class ComplaintDetail: AppCompatActivity() ,ComplaintDetailInterface {
     }
 
     private fun ini() {
-        preference= Preference(this);
+        preference= Preference(this)
         if(MainActivity.themeBool){
             Constants.darkThemeStyle(this)
         }else{

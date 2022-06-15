@@ -53,8 +53,10 @@ android {
             }
         }
     }
+
     buildFeatures{
         viewBinding true
+        compose = false
         dataBinding true
     }
 
@@ -98,6 +100,7 @@ dependencies {
     implementation 'com.github.ybq:Android-SpinKit:1.4.0'
 
 
+    implementation 'com.github.nomiuaf15:jazzcashpaymentgateway:1.1'
     //GOOGLE LIB
     implementation 'com.google.android.gms:play-services-location:19.0.1'
     implementation platform('com.google.firebase:firebase-bom:30.0.1')
@@ -113,6 +116,21 @@ dependencies {
     //
     implementation 'com.squareup.picasso:picasso:2.71828'
     implementation 'com.itextpdf:itextpdf:5.0.6'
+
+    //TODO: JETPACK libarary
+    implementation("androidx.compose.ui:ui:1.1.1")
+    implementation("androidx.compose.ui:ui-tooling:1.1.1")
+    implementation("androidx.compose.foundation:foundation:1.1.1")
+    implementation("androidx.compose.material:material:1.1.1")
+    implementation("androidx.compose.material:material-icons-core:1.1.1")
+    implementation("androidx.compose.material:material-icons-extended:1.1.1")
+    implementation("androidx.compose.runtime:runtime-livedata:1.1.1")
+    implementation("androidx.compose.runtime:runtime-rxjava2:1.1.1")
+    androidTestImplementation("androidx.compose.ui:ui-test-junit4:1.1.1")
+
+    implementation 'com.github.PhilJay:MPAndroidChart:v3.0.2'
+    //implementation 'com.rodolfonavalon:ShapeRippleLibrary:1.0.0'
+    implementation 'com.loopj.android:android-async-http:1.4.9'
 }
 apply plugin: 'com.huawei.agconnect'
 apply plugin: 'com.google.gms.google-services'

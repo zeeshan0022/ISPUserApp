@@ -20,6 +20,7 @@ import androidx.fragment.app.Fragment
 import com.joinhub.alphavpn.utility.Preference
 import com.joinhub.complaintprotaluser.FullProfileActivity
 import com.joinhub.complaintprotaluser.R
+import com.joinhub.complaintprotaluser.SpeedTestActivity
 import com.joinhub.complaintprotaluser.activities.SettingsActivity
 import com.joinhub.complaintprotaluser.activities.SigninActivity
 import com.joinhub.complaintprotaluser.databinding.FragmentProfileBinding
@@ -38,6 +39,7 @@ class ProfileFragment : Fragment() {
         binding.cardSettings.setOnClickListener{
             startActivity(Intent(context, SettingsActivity::class.java))
         }
+        binding.materialCardView10.setOnClickListener { startActivity(Intent(requireContext(),SpeedTestActivity::class.java)) }
         binding.txtEdit.setOnClickListener { startActivity(Intent(requireContext(),FullProfileActivity::class.java)) }
         binding.txtPName.text= preference.getStringpreference("userFullName")
         binding.txtPhone.text= preference.getStringpreference("userPhone")

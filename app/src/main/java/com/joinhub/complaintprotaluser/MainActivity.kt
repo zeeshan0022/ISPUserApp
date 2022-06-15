@@ -5,19 +5,17 @@ import android.os.Build
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
-import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.app.AppCompatDelegate
 import androidx.lifecycle.ViewModelProvider
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.joinhub.alphavpn.utility.Preference
 import com.joinhub.complaintprotaluser.WebApis.CheckApp
-import com.joinhub.complaintprotaluser.WebApis.LoadPackageDetail
 import com.joinhub.complaintprotaluser.activities.DashBoardActivity
 import com.joinhub.complaintprotaluser.activities.SigninActivity
 import com.joinhub.complaintprotaluser.databinding.ActivityMainBinding
 import com.joinhub.complaintprotaluser.models.ManageApp
-import com.joinhub.complaintprotaluser.models.PackageDetails
+import com.joinhub.complaintprotaluser.services.ChatService
 import com.joinhub.complaintprotaluser.services.ComplaintService
 import com.joinhub.complaintprotaluser.utilties.Constants
 import com.joinhub.complaintprotaluser.utilties.Constants.Companion.darkThemeStyle
@@ -25,9 +23,9 @@ import com.joinhub.complaintprotaluser.utilties.Constants.Companion.lightThemeSt
 import com.joinhub.complaintprotaluser.viewmodels.ThemeViewModel
 
 class MainActivity : AppCompatActivity() {
-    lateinit var viewTheme:ThemeViewModel
-    lateinit var binding: ActivityMainBinding
-    lateinit var model: ManageApp
+    private lateinit var viewTheme:ThemeViewModel
+    private lateinit var binding: ActivityMainBinding
+    private lateinit var model: ManageApp
     lateinit var preference: Preference
     companion object{
         var themeBool:Boolean = false
@@ -41,8 +39,14 @@ class MainActivity : AppCompatActivity() {
 
         val preference= Preference(baseContext)
         if(preference.isBooleenPreference("user")){
+            //Start service:
+            //Start service:
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-                startService(Intent(this@MainActivity, ComplaintService::class.java))
+                startForegroundService(Intent(this, ComplaintService::class.java))
+                startForegroundService(Intent(this, ChatService::class.java))
+            } else {
+                startService(Intent(this, ComplaintService::class.java))
+                startService(Intent(this, ChatService::class.java))
             }
             checkApp()
 
@@ -76,8 +80,9 @@ class MainActivity : AppCompatActivity() {
                         if (model.id == 0) {
                             nextScreen()
                         } else {
+                            if(Constants.getMonthFromDate(model.startFrom)==Constants.getMonth().toInt()){
                             when {
-                                model.startFrom > Constants.getDate() -> {
+                                model.startFrom > Constants.getDate()  -> {
                                     startingDialog(model.status)
                                 }
                                 model.startFrom <= Constants.getDate() && model.toEnd >= Constants.getDate() -> {
@@ -88,6 +93,10 @@ class MainActivity : AppCompatActivity() {
                                     nextScreen()
                                 }
 
+                            }
+
+                        }else{
+                            nextScreen()
                             }
                         }
                     } else {

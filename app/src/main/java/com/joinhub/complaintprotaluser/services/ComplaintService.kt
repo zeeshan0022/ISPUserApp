@@ -1,16 +1,17 @@
 package com.joinhub.complaintprotaluser.services
 
 import android.app.*
-import android.content.Context
 import android.content.Intent
-import android.graphics.Color
 import android.os.Build
 import android.os.IBinder
 import android.util.Log
 import androidx.annotation.Nullable
 import androidx.annotation.RequiresApi
 import androidx.core.app.NotificationCompat
+import androidx.core.app.NotificationManagerCompat
+import com.google.firebase.messaging.RemoteMessage
 import com.joinhub.alphavpn.utility.Preference
+import com.joinhub.complaintprotaluser.R
 import com.joinhub.complaintprotaluser.WebApis.CheckApp
 import com.joinhub.complaintprotaluser.models.ManageApp
 import com.joinhub.complaintprotaluser.receiver.RestartService
@@ -24,35 +25,31 @@ class ComplaintService: Service() {
     lateinit var preference:Preference
     override fun onCreate() {
         super.onCreate()
-//        if (Build.VERSION.SDK_INT > Build.VERSION_CODES.O) startMyOwnForeground() else startForeground(
-//            1,
-//            Notification()
-//        )
         startTimer()
 
     }
 
     @RequiresApi(Build.VERSION_CODES.O)
     private fun startMyOwnForeground() {
-        val NOTIFICATION_CHANNEL_ID = "example.permanence"
-        val channelName = "Background Service"
-        val chan = NotificationChannel(
-            NOTIFICATION_CHANNEL_ID,
-            channelName,
-            NotificationManager.IMPORTANCE_NONE
+        val title =
+           "Maintenance Alert"
+        val text: String = "Hello"
+        val channel_id = "HEAD_UP_NOTIFICATION"
+        var channel: NotificationChannel? = null
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            channel = NotificationChannel(
+                channel_id,
+                " Friends Internet",
+                NotificationManager.IMPORTANCE_HIGH
+            )
+        }
+        getSystemService(NotificationManager::class.java).createNotificationChannel(
+            channel!!
         )
-        chan.lightColor = Color.BLUE
-        chan.lockscreenVisibility = Notification.VISIBILITY_PRIVATE
-        val manager = (getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager)
-        manager.createNotificationChannel(chan)
-        val notificationBuilder: NotificationCompat.Builder = NotificationCompat.Builder(this, NOTIFICATION_CHANNEL_ID)
-        val notification: Notification = notificationBuilder.setOngoing(true)
-            .setContentTitle("App is running in background")
-            .setPriority(NotificationManager.IMPORTANCE_MIN)
-            .setCategory(Notification.CATEGORY_SERVICE)
-            .build()
-        startForeground(2, notification)
-
+        val builder: Notification.Builder = Notification.Builder(this, channel_id)
+            .setContentText(text)
+            .setContentTitle(title).setAutoCancel(true).setSmallIcon(R.mipmap.ic_launcher)
+        NotificationManagerCompat.from(this).notify(1, builder.build())
     }
 
 
@@ -85,15 +82,10 @@ class ComplaintService: Service() {
                 }
             }
         }
-        timer!!.schedule(timerTask, 1000000, 1000000) //
+        timer!!.schedule(timerTask, 100000, 1000000) //
     }
 
-    fun startNotificationListener() {
-        //start's a new thread
-        Thread { //fetching notifications from server
-            buildNotice()
-        }.start()
-    }
+
     private fun checkMaintain() {
         if(preference.getIntpreference("areaID")>0) {
             Log.d("Notice:", "1")
@@ -116,32 +108,14 @@ class ComplaintService: Service() {
                             if (preference.getIntpreference("id") != model.id) {
                                 preference.setIntpreference("id", model.id)
                                 Log.d("Notice:", "2")
+                                startMyOwnForeground()
 
-                                startNotificationListener()
                             }
                         }
 
                     }
                 }
             }.start()
-        }
-    }
-
-    private fun buildNotice() {
-        val notificationManager = getSystemService(NOTIFICATION_SERVICE) as NotificationManager
-        val notification: Notification = NotificationCompat.Builder(baseContext, "notification_id")
-            .setSmallIcon(android.R.drawable.ic_notification_clear_all)
-            .setContentTitle("title")
-            .setContentText("content")
-            .setDefaults(NotificationCompat.DEFAULT_SOUND)
-            .build()
-        notificationManager.notify(0, notification)
-    }
-
-    fun stoptimertask() {
-        if (timer != null) {
-            timer!!.cancel()
-            timer = null
         }
     }
 

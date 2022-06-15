@@ -3,6 +3,7 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Final Year Projects/ComplaintProtalUser/app/src/main/res/drawable-v24/ic_download.xml" value="0.141" />
         <entry key="..\:/Final Year Projects/ComplaintProtalUser/app/src/main/res/drawable/chat_rounded_rect_bg.xml" value="0.137" />
         <entry key="..\:/Final Year Projects/ComplaintProtalUser/app/src/main/res/drawable/circle_accent.xml" value="0.137" />
         <entry key="..\:/Final Year Projects/ComplaintProtalUser/app/src/main/res/drawable/circle_bg.xml" value="0.157" />
@@ -24,8 +25,10 @@
         <entry key="..\:/Final Year Projects/ComplaintProtalUser/app/src/main/res/layout/activity_main.xml" value="0.22" />
         <entry key="..\:/Final Year Projects/ComplaintProtalUser/app/src/main/res/layout/activity_package_details.xml" value="0.18" />
         <entry key="..\:/Final Year Projects/ComplaintProtalUser/app/src/main/res/layout/activity_payment.xml" value="0.19166666666666668" />
+        <entry key="..\:/Final Year Projects/ComplaintProtalUser/app/src/main/res/layout/activity_response.xml" value="0.1" />
         <entry key="..\:/Final Year Projects/ComplaintProtalUser/app/src/main/res/layout/activity_settings.xml" value="0.22" />
         <entry key="..\:/Final Year Projects/ComplaintProtalUser/app/src/main/res/layout/activity_signin.xml" value="0.18" />
+        <entry key="..\:/Final Year Projects/ComplaintProtalUser/app/src/main/res/layout/activity_speed_test.xml" value="0.19166666666666668" />
         <entry key="..\:/Final Year Projects/ComplaintProtalUser/app/src/main/res/layout/dialog_billing_invoice.xml" value="0.19166666666666668" />
         <entry key="..\:/Final Year Projects/ComplaintProtalUser/app/src/main/res/layout/fragment_add_complatint.xml" value="0.25" />
         <entry key="..\:/Final Year Projects/ComplaintProtalUser/app/src/main/res/layout/fragment_all_packages.xml" value="0.22" />

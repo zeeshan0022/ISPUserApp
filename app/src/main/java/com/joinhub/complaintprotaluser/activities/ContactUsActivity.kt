@@ -11,7 +11,8 @@ class ContactUsActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding= ActivityContactUsBinding.inflate(layoutInflater)
         setContentView(binding.root)
-
         binding.back.setOnClickListener { finish() }
     }
+
+
 }
